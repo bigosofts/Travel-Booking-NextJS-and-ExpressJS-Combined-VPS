@@ -62,7 +62,7 @@ nextApp.prepare().then(() => {
   app.use(bodyParser.json());
 
   // Mongo DB Database Connection
-  let URI = `mongodb+srv://${process.env.DATABASE_USERNAME}:${process.env.DATABASE_PASSWORD}@cluster0.fbrulyl.mongodb.net/${process.env.DATABASE_USERNAME}?retryWrites=true&w=majority`;
+  let URI = `mongodb+srv://${process.env.DATABASE_USERNAME}:${process.env.DATABASE_PASSWORD}@cluster0.fbrulyl.mongodb.net/${process.env.DATABASE_NAME}?retryWrites=true&w=majority`;
 
   // let URI = `mongodb://127.0.0.1:27017/${process.env.DATABASE_USERNAME}`;
 
