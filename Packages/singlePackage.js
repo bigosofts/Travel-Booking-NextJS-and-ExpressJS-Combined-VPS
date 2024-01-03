@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import React from "react";
+import "./Packages.css";
 
 function SinglePackage({ items }) {
   let averageReview =
@@ -16,10 +17,23 @@ function SinglePackage({ items }) {
           </Link>
           <p>
             <i className="fa fa-map-marker"></i>
-            {items.country}
+            {items.place}, {items.country}
           </p>
         </div>
         <div className="theme_two_box_content">
+          <div className="badgeCard">
+            <span
+              style={{
+                width: "100px",
+                backgroundColor: "red",
+                padding: "2px 5px",
+                borderRadius: "5px",
+                color: "white",
+              }}
+            >
+              {items.activity}
+            </span>
+          </div>
           <h4 style={{ textAlign: "center" }}>
             <Link href={`/travels/${items.packageId}`}>
               {items.packageTitle}
@@ -39,26 +53,31 @@ function SinglePackage({ items }) {
             style={{
               display: "flex",
               justifyContent: "space-between",
-              padding: "20px 15%",
+              padding: "20px 15% 0px 15%",
             }}
           >
             <div>
-              <p>Activity:</p>
-              <p>Location:</p>
-              <p>Difficulty:</p>
-              <p>Time of year:</p>
-              <p>Price range:</p>
-              <p>Duration:</p>
-            </div>
-            <div>
-              <p>{items.activity}</p>
-              <p>{items.place}</p>
-              <p>{items.difficulty}</p>
-              <p>{items.travelTimeTwo}</p>
-              <p>
-                ${items.price} - ${items.maxPrice}
-              </p>
-              <p>{items.duration} days</p>
+              <table id="postGridTable" style={{ width: "100%" }}>
+                
+                <tr>
+                  <td>Difficulty:</td>
+                  <td className="td-right">{items.difficulty}</td>
+                </tr>
+                <tr>
+                  <td>Time of year:</td>
+                  <td className="td-right">{items.travelTimeTwo}</td>
+                </tr>
+                <tr>
+                  <td>Price range:</td>
+                  <td className="td-right">
+                    ${items.price} - ${items.maxPrice}
+                  </td>
+                </tr>
+                <tr>
+                  <td>Duration:</td>
+                  <td className="td-right">{items.duration} days</td>
+                </tr>
+              </table>
             </div>
           </div>
         </div>

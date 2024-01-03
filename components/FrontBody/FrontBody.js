@@ -101,6 +101,7 @@ function FrontBody({ children }) {
                     <div
                       style={{
                         background: `url("${item.image}")`,
+                        backgroundPosition:"10% 20%"
                       }}
                       className="card-front-sec card bg-dark text-white"
                     >

@@ -412,8 +412,9 @@ main {
 /*fixing error */
 .card-img-overlay {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
+  padding: unset !important;
 }
 .card {
   cursor: pointer;
@@ -797,7 +798,7 @@ p:last-child {
 }
 .theme_two_box_content {
   background: #fff;
-  padding: 20px 15px;
+  padding: 0px 15px 20px 15px;
 }
 .theme_two_box_content h4 {
   text-overflow: ellipsis;
@@ -888,7 +889,7 @@ p {
 .card-front-sec {
   height: 450px !important;
   background-size: cover !important;
-  background-position: center !important;
+  background-position: 80% 50% !important;
 }
 @media only screen and (max-width: 768px) {
   .card-front-sec {
@@ -901,10 +902,11 @@ p {
 .parallax-about {
   display: flex;
   align-items: center;
-  background: url("/images/background.png");
+  background: url("/images/mountain_hike.jpg");
   background-attachment: fixed;
   background-size: cover;
-  background-position: bottom;
+  background-position: center;
+  background-repeat: no-repeat;
   padding: 50px 20%;
   color: #fff;
   background-blend-mode: darken;
@@ -930,10 +932,9 @@ p {
 
 .overlay-image-div {
   padding: 10px;
+  background: rgba(167, 216, 251, 0.5);
 }
-.overlay-image-div h1,.overlay-image-div h5  {
-  color: white !important;
-  text-shadow: -1px 0 black, 0 1px rgba(0,0,0,0.3), 1px 0 rgba(0,0,0,0.3), 0 -1px rgba(0,0,0,0.3);
-  letter-spacing: 2px;
+.overlay-image-div h1,
+.overlay-image-div h5 {
+  color: #000 !important;
 }
-

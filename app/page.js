@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setInitialData } from "./redux/features/isAdmin/isAdminSlice";
 import { getToken, setToken } from "@/helper/sessionHelper";
 
-
 function Page(props) {
   const dispatch = useDispatch();
 
@@ -22,11 +21,12 @@ function Page(props) {
         dispatch(setInitialData(res2));
       } else if (res) {
         dispatch(setInitialData(res));
-        setToken("token_travel", {status:"noToken", data:""});
+        setToken("token_travel", { status: "noToken", data: "" });
       }
     }
     getData();
   }, []);
+
   return (
     <>
       <HeaderFront />
