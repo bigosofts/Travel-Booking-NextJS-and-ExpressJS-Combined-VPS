@@ -16,10 +16,10 @@ import ReviewGrid from "@/components/ReviewGrid/ReviewGrid";
 import mytoast from "@/components/toast/toast";
 import Link from "next/link";
 import { getToken } from "@/helper/sessionHelper";
-import {
-  createData as createConversations,
-  selectAllData as selectConversations,
-} from "@/apiservices/conversationapiservices";
+// import {
+//   createData as createConversations,
+//   selectAllData as selectConversations,
+// } from "@/apiservices/conversationapiservices";
 import { useRouter } from "next/navigation";
 import SingleSlider from "@/components/SingleSlider/SingleSlider";
 
@@ -28,77 +28,77 @@ function SingleTravelPage({ params }) {
     history.back();
   }
   const router = useRouter();
-  async function SendMsgRequest(Data) {
-    if (adminData.status == "noToken") {
-      mytoast.danger("You need to login to start Messaging");
-    } else {
-      let conversationID = Data.createdUser + adminData.data.userName;
+  // async function SendMsgRequest(Data) {
+  //   if (adminData.status == "noToken") {
+  //     mytoast.danger("You need to login to start Messaging");
+  //   } else {
+  //     let conversationID = Data.createdUser + adminData.data.userName;
 
-      const resC = await selectConversations(
-        { conversationID: conversationID },
-        { conversationID: true }
-      );
-      if (resC.data.length > 0) {
-        mytoast.warning("Conversation already created. Go to message");
-      } else {
-        let res = await createConversations(
-          conversationID,
-          Data.createdUser,
-          Data.createdUserType,
-          adminData.data.userName,
-          adminData.data.userRole,
-          Data.packageId
-        );
+  //     const resC = await selectConversations(
+  //       { conversationID: conversationID },
+  //       { conversationID: true }
+  //     );
+  //     if (resC.data.length > 0) {
+  //       mytoast.warning("Conversation already created. Go to message");
+  //     } else {
+  //       let res = await createConversations(
+  //         conversationID,
+  //         Data.createdUser,
+  //         Data.createdUserType,
+  //         adminData.data.userName,
+  //         adminData.data.userRole,
+  //         Data.packageId
+  //       );
 
-        if (res) {
-          if (res.status == "Success") {
-            mytoast.success("Request Accepted");
-            setTimeout(() => {
-              router.push(`/dashboard/${adminData.data.userName}/setting`);
-            }, 2000);
-          } else {
-            mytoast.warning("Something Went Wrong, See console");
-            console.log(res);
-          }
-        }
-      }
-    }
-  }
-  async function sendMessage(Data) {
-    if (adminData.status == "noToken") {
-      mytoast.danger("You need to login to start Messaging");
-    } else {
-      let conversationID = adminData.data.userName + Data.createdUser;
-      const resC = await selectConversations(
-        { conversationID: conversationID },
-        { conversationID: true }
-      );
-      if (resC.data.length > 0) {
-        mytoast.warning("Conversation already created. Go to message");
-      } else {
-        let res = await createConversations(
-          conversationID,
-          adminData.data.userName,
-          adminData.data.userRole,
-          Data.createdUser,
-          Data.createdUserType,
-          Data.packageId
-        );
+  //       if (res) {
+  //         if (res.status == "Success") {
+  //           mytoast.success("Request Accepted");
+  //           setTimeout(() => {
+  //             router.push(`/dashboard/${adminData.data.userName}/setting`);
+  //           }, 2000);
+  //         } else {
+  //           mytoast.warning("Something Went Wrong, See console");
+  //           console.log(res);
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+  // async function sendMessage(Data) {
+  //   if (adminData.status == "noToken") {
+  //     mytoast.danger("You need to login to start Messaging");
+  //   } else {
+  //     let conversationID = adminData.data.userName + Data.createdUser;
+  //     const resC = await selectConversations(
+  //       { conversationID: conversationID },
+  //       { conversationID: true }
+  //     );
+  //     if (resC.data.length > 0) {
+  //       mytoast.warning("Conversation already created. Go to message");
+  //     } else {
+  //       let res = await createConversations(
+  //         conversationID,
+  //         adminData.data.userName,
+  //         adminData.data.userRole,
+  //         Data.createdUser,
+  //         Data.createdUserType,
+  //         Data.packageId
+  //       );
 
-        if (res) {
-          if (res.status == "Success") {
-            mytoast.success("Request Accepted");
-            setTimeout(() => {
-              router.push(`/dashboard/${adminData.data.userName}/setting`);
-            }, 2000);
-          } else {
-            mytoast.warning("Something Went Wrong, See console");
-            console.log(res);
-          }
-        }
-      }
-    }
-  }
+  //       if (res) {
+  //         if (res.status == "Success") {
+  //           mytoast.success("Request Accepted");
+  //           setTimeout(() => {
+  //             router.push(`/dashboard/${adminData.data.userName}/setting`);
+  //           }, 2000);
+  //         } else {
+  //           mytoast.warning("Something Went Wrong, See console");
+  //           console.log(res);
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 
   const adminData = getToken("token_travel");
   const [presetPackage, setPresetPackage] = useState();
@@ -476,7 +476,7 @@ function SingleTravelPage({ params }) {
 
                 <div className="sidebar-travelpage">
                   <BookingInfoCard filler={singleData} />
-                  <div
+                  {/* <div
                     style={{
                       width: "80%",
                       height: "80px",
@@ -520,15 +520,15 @@ function SingleTravelPage({ params }) {
                         Talk Guide to Order
                       </button>
                     )}
-                    {/* <button
+                    <button
                       onClick={() => orderCreate(singleData)}
                       style={{ fontSize: "20px" }}
                       className="btn btn-primary"
                      type="button"
                      >
                       {bookLoad ? "Ordered" : "Book Now"}
-                     </button> */}
-                  </div>
+                     </button>
+                  </div> */}
 
                   <div
                     style={{ width: "80%", margin: "auto" }}
