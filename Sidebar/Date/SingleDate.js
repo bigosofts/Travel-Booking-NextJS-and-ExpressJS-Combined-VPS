@@ -5,7 +5,6 @@ function SingleDate({group, text, click}) {
   
     var options = {
       month: "long",
-      day: "numeric",
     };
   
     var formattedDate = date.toLocaleDateString("en-US", options);

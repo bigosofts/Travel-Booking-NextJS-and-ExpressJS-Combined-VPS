@@ -161,7 +161,7 @@ function SignupForm(props) {
               <div
                 onClick={clickHandlerInstructor}
                 className="btn btn-signup sign-up-btn"
-              >Click to sign up as a guide or organization looking for work</div>
+              >Click to sign up as a guide or organization</div>
             </div>
           </form>
         </div>

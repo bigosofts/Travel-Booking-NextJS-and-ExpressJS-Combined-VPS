@@ -265,7 +265,7 @@ function SingleTravelPage({ params }) {
                 <div className="wrapper-single-title">
                   <div className="round-icon-div">
                     <span className="round-icon-design">
-                      <i className="fa fa-clock-o"></i>
+                      <i className="fa fa-calendar"></i>
                     </span>
                   </div>
                   <div className="single-travel-div">
@@ -276,7 +276,7 @@ function SingleTravelPage({ params }) {
                 <div className="wrapper-single-title">
                   <div className="round-icon-div">
                     <span className="round-icon-design">
-                      <i className="fa fa-clock-o"></i>
+                      <i className="fa fa-money"></i>
                     </span>
                   </div>
                   <div className="single-travel-div">
@@ -333,6 +333,12 @@ function SingleTravelPage({ params }) {
                     <h2>{singleData.packageTitle}</h2>
                     <p>{singleData.travelDescription}</p>
                     <Accordion filler={singleData} />
+                    
+                    <div className="sidebar-travelpage">
+                      <div className="visibility-sidebar2">
+                        <BookingInfoCard filler={singleData} />
+                      </div>
+                    </div>
 
                     <div
                       style={{ borderTop: "10px solid rgb(229 229 229)" }}
@@ -475,7 +481,10 @@ function SingleTravelPage({ params }) {
                 </div>
 
                 <div className="sidebar-travelpage">
-                  <BookingInfoCard filler={singleData} />
+                  <div className="visibility-sidebar">
+                    <BookingInfoCard filler={singleData} />
+                  </div>
+
                   {/* <div
                     style={{
                       width: "80%",

@@ -43,20 +43,18 @@ function FrontFooter(props) {
           </div>
 
           <div>
-          {social_media.map((item, i) => (
-                  <a href={item.link} className="me-4 link-secondary">
-                  <i className={`fa ${item.icon}`}></i>
-                </a>
-                ))}
-            
-            
+            {social_media.map((item, i) => (
+              <a href={item.link} className="me-4 link-secondary">
+                <i className={`fa ${item.icon}`}></i>
+              </a>
+            ))}
           </div>
         </section>
 
         <section className="">
           <div className="container text-center text-md-start mt-5">
             <div className="row mt-3">
-              <div className="col-md-3 col-lg-4 col-xl-3 mx-auto">
+              <div className="col-md-3 col-lg-4 col-xl-3 mb-4 mx-auto">
                 {about_us.map((item, i) => (
                   <div>
                     <h6 className="text-uppercase fw-bold mb-4">
@@ -69,28 +67,25 @@ function FrontFooter(props) {
 
               <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                 <h6 className="text-uppercase fw-bold mb-4">Useful Link</h6>
-               
+
                 {footer_menu_bottom_one.map((item, i) => (
                   <p>
-                  <a href={item.link} className="text-reset">
-                    {item.text}
-                  </a>
-                </p>
+                    <a href={item.link} className="text-reset">
+                      {item.text}
+                    </a>
+                  </p>
                 ))}
-                
-               
               </div>
 
               <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                 <h6 className="text-uppercase fw-bold mb-4">Useful links</h6>
                 {footer_menu_bottom_two.map((item, i) => (
                   <p>
-                  <a href={item.link} className="text-reset">
-                    {item.text}
-                  </a>
-                </p>
+                    <a href={item.link} className="text-reset">
+                      {item.text}
+                    </a>
+                  </p>
                 ))}
-                
               </div>
 
               <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
@@ -101,7 +96,6 @@ function FrontFooter(props) {
                     {item.text}
                   </p>
                 ))}
-                
               </div>
             </div>
           </div>
@@ -111,7 +105,7 @@ function FrontFooter(props) {
           className="text-center p-4"
           style={{ backgroundColor: "rgba(0, 0, 0, 0.025)" }}
         >
-          © 2023 Copyright: 
+          © 2023 Copyright:
           <a className="text-reset fw-bold"> Active Ascents</a>
         </div>
       </footer>
