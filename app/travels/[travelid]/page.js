@@ -195,7 +195,7 @@ function SingleTravelPage({ params }) {
       try {
         const dataArray2 = await selectDataPublic({
           activeStatus: "active",
-          preset: true,
+          packageType: "package",
         });
         setPresetPackage(dataArray2.data);
       } catch (error) {
@@ -333,7 +333,7 @@ function SingleTravelPage({ params }) {
                     <h2>{singleData.packageTitle}</h2>
                     <p>{singleData.travelDescription}</p>
                     <Accordion filler={singleData} />
-                    
+
                     <div className="sidebar-travelpage">
                       <div className="visibility-sidebar2">
                         <BookingInfoCard filler={singleData} />
@@ -543,8 +543,14 @@ function SingleTravelPage({ params }) {
                     style={{ width: "80%", margin: "auto" }}
                     className="recent"
                   >
-                    <h2 style={{ marginTop: "50px", marginBottom: "40px" }}>
-                      Preset Travels
+                    <h2
+                      style={{
+                        paddingTop: "20px",
+                        marginTop: "50px",
+                        marginBottom: "40px",
+                      }}
+                    >
+                      Other adventures
                     </h2>
                     {presetPackage.slice(0, 3).map((item, i) => (
                       <div key={i} className="images">
@@ -576,7 +582,7 @@ function SingleTravelPage({ params }) {
         <div onClick={goBack} className="floating-back-button">
           <i className="fa fa-arrow-left" aria-hidden="true">
             {" "}
-            Go Back{" "}
+            Back{" "}
           </i>
         </div>
         <FrontFooter />

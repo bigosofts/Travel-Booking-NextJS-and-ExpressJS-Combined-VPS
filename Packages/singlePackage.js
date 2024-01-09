@@ -93,7 +93,7 @@ function SinglePackage({ items }) {
           <button
             style={{ width: "50%", margin: "auto" }}
             type="button"
-            class="btn btn-info btn-sm"
+            class="single-button btn btn-info btn-sm"
           >
             <Link
               style={{ color: "#fff" }}

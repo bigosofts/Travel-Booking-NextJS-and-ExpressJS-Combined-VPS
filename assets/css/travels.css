@@ -650,5 +650,10 @@ label.star:before {
   .visibility-sidebar{
     display: none;
   }
+  .floating-back-button {
+    
+    top: 100px;
+  
+  }
 }
 

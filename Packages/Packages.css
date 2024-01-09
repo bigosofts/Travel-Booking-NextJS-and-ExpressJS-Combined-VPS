@@ -22,9 +22,50 @@
 .td-right {
   padding-left: 20px !important;
 }
-.badgeCard{
+.badgeCard {
   margin-top: 10px;
   margin-bottom: 10px !important;
   text-align: center;
- 
+}
+@media only screen and (max-width: 600px) {
+  .small-single-package .theme_two_box_img p {
+    font-size: 8px;
+  }
+  .small-single-package .badgeCard {
+    margin-top: 2px;
+    margin-bottom: 2px !important;
+    text-align: center;
+  }
+
+  .small-single-package .badgeCard span {
+    font-size: 10px;
+  }
+  .small-single-package .theme_two_box_content h4 a {
+    font-size: 12px !important;
+  }
+  .small-single-package .theme_two_box_content p .review_rating {
+    font-size: 8px !important;
+  }
+  .small-single-package .theme_two_box_content p .review_count {
+    margin-left: 1px;
+    padding: 0px 0px;
+    font-size: 8px;
+  }
+  .small-single-package .theme_common_box_two {
+    font-size: 8px;
+
+    font-weight: 200;
+    line-height: 1.5;
+  }
+  .small-single-package .detail_data {
+    padding: 5px 0% 0px !important;
+  }
+  .small-single-package .theme_two_box_content {
+    padding: 0px 15px 5px 15px !important;
+  }
+  .small-single-package .single-button {
+    font-size: 8px;
+    width: 80% !important;
+    margin: 5px auto !important;
+  }
 }
