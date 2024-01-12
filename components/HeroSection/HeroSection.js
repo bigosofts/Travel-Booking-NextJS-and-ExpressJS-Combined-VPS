@@ -2,15 +2,110 @@
 import { useEffect } from "react";
 
 function HeroSection(props) {
-  
 
  
+  function hardRefresh() {
+    const parallax_el = document.querySelectorAll(".parallax");
+
+    let xValue = 0,
+      yValue = 0;
+
+    let rotateDegree = 0;
+
+    function update(cursorPosition) {
+      parallax_el.forEach((el) => {
+        let speedx = el.dataset.speedx;
+        let speedy = el.dataset.speedy;
+        let speedz = el.dataset.speedz;
+        let rotateSpeed = el.dataset.rotation;
+
+        let isInLeft =
+          parseFloat(getComputedStyle(el).left) < window.innerWidth / 2
+            ? 1
+            : -1;
+        let zValue =
+          (cursorPosition - parseFloat(getComputedStyle(el).left)) *
+          isInLeft *
+          0.1;
+
+        el.style.transform = `translateX(calc(-50% + ${
+          -xValue * speedx
+        }px)) translateY(calc(-50% + ${
+          yValue * speedy
+        }px)) perspective(2300px) rotateY(${
+          rotateDegree * rotateSpeed
+        }deg) translateZ(${zValue * speedz}px)`;
+      });
+    }
+    update(0);
+
+    window.addEventListener("mousemove", (e) => {
+      if (timeline.isActive()) return;
+      xValue = e.clientX - window.innerWidth / 2;
+      yValue = e.clientY - window.innerHeight / 2;
+
+      rotateDegree = (xValue / (window.innerWidth / 2)) * 20;
+      update(e.clientX);
+    });
+
+    /* Gsap animation */
+
+    let timeline = gsap.timeline();
+
+    Array.from(parallax_el)
+      .filter((el) => !el.classList.contains("text"))
+      .forEach((el) => {
+        timeline.from(
+          el,
+          {
+            top: `${el.offsetHeight / 2 + +el.dataset.distance}px`,
+            duration: 3.5,
+            ease: "power3.out",
+          },
+          "1"
+        );
+      });
+
+    timeline
+      .from(
+        ".text h1",
+        {
+          y:
+            window.innerHeight -
+            document.querySelector(".text h1").getBoundingClientRect().top +
+            200,
+          duration: 2,
+        },
+        "2.5"
+      )
+      .from(
+        ".text h2",
+        {
+          Y: -150,
+          opacity: 0,
+          duration: 1.5,
+        },
+        "3"
+      )
+      .from(
+        ".hide",
+        {
+          opacity: 0,
+          duration: 1.5,
+        },
+        "3"
+      );
+  }
   
+
   useEffect(() => {
-      import("../../assets/js/gsap.js");
+
+    import("../../assets/js/gsap.js");
+  
   }, []);
+
   return (
-    <main>
+    <main onClick={hardRefresh}>
       <div className="container-parallax">
         <div className="vignette hide"></div>
         <img
@@ -20,7 +115,7 @@ function HeroSection(props) {
           data-speedz="0"
           data-rotation="0"
           data-distance="-200"
-          src="https://i.imgur.com/a4wnuYZ.png"
+          src="/hero-img/background.png"
           alt=""
         />
         <img
@@ -30,7 +125,7 @@ function HeroSection(props) {
           data-speedz="0"
           data-rotation="0"
           data-distance="850"
-          src="https://i.imgur.com/JFv2xKd.png"
+          src="/hero-img/fog_7.png"
           alt=""
         />
         <img
@@ -40,7 +135,7 @@ function HeroSection(props) {
           data-speedz="0"
           data-rotation="0"
           data-distance="1100"
-          src="https://i.imgur.com/CBR5jQK.png"
+          src="/hero-img/mountain_10.png"
           alt=""
         />
         <img
@@ -50,7 +145,7 @@ function HeroSection(props) {
           data-speedz="0"
           data-rotation="0"
           data-distance="1400"
-          src="https://i.imgur.com/NOYhXgl.png"
+          src="/hero-img/fog_6.png"
           alt=""
         />
         <img
@@ -60,7 +155,7 @@ function HeroSection(props) {
           data-speedz="0.15"
           data-rotation="0.02"
           data-distance="1700"
-          src="https://i.imgur.com/ro3lB5W.png"
+          src="/hero-img/mountain_9.png"
           alt=""
         />
         <img
@@ -70,7 +165,7 @@ function HeroSection(props) {
           data-speedz="0"
           data-rotation="0.02"
           data-distance="1800"
-          src="https://i.imgur.com/lwrIxBe.png"
+          src="/hero-img/mountain_8.png"
           alt=""
         />
         <img
@@ -80,7 +175,7 @@ function HeroSection(props) {
           data-speedz="0"
           data-rotation="0"
           data-distance="1900"
-          src="https://i.imgur.com/DfqpMFM.png"
+          src="/hero-img/fog_5.png"
           alt=""
         />
         <img
@@ -90,7 +185,7 @@ function HeroSection(props) {
           data-speedz="0"
           data-rotation="0.09"
           data-distance="2000"
-          src="https://i.imgur.com/8ogQ7VV.png"
+          src="/hero-img/mountain_7.png"
           alt=""
         />
         <div
@@ -111,7 +206,7 @@ function HeroSection(props) {
           data-speedz="0.05"
           data-rotation="0.12"
           data-distance="2300"
-          src="https://i.imgur.com/b6Emkz2.png"
+          src="/hero-img/mountain_6.png"
           alt=""
         />
         <img
@@ -121,7 +216,7 @@ function HeroSection(props) {
           data-speedz="0"
           data-rotation="0"
           data-distance="2400"
-          src="https://i.imgur.com/tWnLOkG.png"
+          src="/hero-img/fog_4.png"
           alt=""
         />
         <img
@@ -131,7 +226,7 @@ function HeroSection(props) {
           data-speedz="0.13"
           data-rotation="0.1"
           data-distance="2550"
-          src="https://i.imgur.com/JLOyFwN.png"
+          src="/hero-img/mountain_5.png"
           alt=""
         />
         <img
@@ -141,7 +236,7 @@ function HeroSection(props) {
           data-speedz="0"
           data-rotation="0"
           data-distance="2800"
-          src="https://i.imgur.com/U6awYa2.png"
+          src="/hero-img/fog_3.png"
           alt=""
         />
         <img
@@ -151,7 +246,7 @@ function HeroSection(props) {
           data-speedz="0"
           data-rotation="0.14"
           data-distance="3200"
-          src="https://i.imgur.com/gYXzSum.png"
+          src="/hero-img/mountain_4.png"
           alt=""
         />
         <img
@@ -161,7 +256,7 @@ function HeroSection(props) {
           data-speedz="0.32"
           data-rotation="0.05"
           data-distance="3400"
-          src="https://i.imgur.com/h3YArvZ.png"
+          src="/hero-img/mountain_3.png"
           alt=""
         />
         <img
@@ -171,7 +266,7 @@ function HeroSection(props) {
           data-speedz="0"
           data-rotation="0"
           data-distance="3600"
-          src="https://i.imgur.com/XOs42TI.png"
+          src="/hero-img/fog_2.png"
           alt=""
         />
         <img
@@ -181,7 +276,7 @@ function HeroSection(props) {
           data-speedz="0.42"
           data-rotation="0.15"
           data-distance="3800"
-          src="https://i.imgur.com/nfFnk47.png"
+          src="/hero-img/mountain_2.png"
           alt=""
         />
         <img
@@ -191,17 +286,17 @@ function HeroSection(props) {
           data-speedz="0.53"
           data-rotation="0.2"
           data-distance="4000"
-          src="https://i.imgur.com/ZjWzFGw.png"
+          src="/hero-img/mountain_1.png"
           alt=""
         />
         <img
           className="para-hidden sun-rays hide"
-          src="https://i.imgur.com/kALlNeh.png"
+          src="/hero-img/sun_rays.png"
           alt=""
         />
         <img
           className="para-hidden black-shadow hide"
-          src="https://i.imgur.com/WmDAnmc.png"
+          src="/hero-img/black_shadow.png"
           alt=""
         />
         <img
@@ -211,7 +306,7 @@ function HeroSection(props) {
           data-speedz="0"
           data-rotation="0"
           data-distance="4200"
-          src="https://i.imgur.com/ZkyWJhS.png"
+          src="/hero-img/fog_1.png"
           alt=""
         />
       </div>

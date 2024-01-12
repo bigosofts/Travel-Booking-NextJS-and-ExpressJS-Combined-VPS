@@ -21,15 +21,14 @@ function BookingInfoCard({ filler }) {
         <div className="style-1">
           <div className="style-2">
             <div className="style-3">
-              <span className="style-4">Price: ${filler.price}</span>
+              <span className="style-4">{filler.activity}</span>
             </div>
           </div>
         </div>
         <div className="style-5">
           <img src="/images/next1.png" className="style-6" />
           <div className="style-7">
-            <div className="style-8">Travel Date: {formattedDate}</div>
-            <div className="style-9">Duration: {filler.duration} days</div>
+            <div className="style-8">{filler.packageTitle}</div>
           </div>
         </div>
       </div>

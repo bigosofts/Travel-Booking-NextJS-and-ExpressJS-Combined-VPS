@@ -101,13 +101,12 @@ function FrontBody({ children }) {
                     <div
                       style={{
                         background: `url("${item.image}")`,
+                        backgroundPosition: "10% 20%",
                       }}
                       className="card-front-sec card bg-dark text-white"
                     >
                       <div className="card-img-overlay">
-                        <div
-                          className="overlay-image-div"
-                        >
+                        <div className="overlay-image-div">
                           <h1
                             style={{
                               textAlign: "center",
@@ -165,14 +164,14 @@ function FrontBody({ children }) {
 
         <div className="section-front px-4 px-md-5">
           <div className="p-4 text-center">
-            <h1 className="mb-3">About US</h1>
+            <h1 className="mb-3">About Us</h1>
           </div>
           <section className="service-categories text-xs-center px-0 px-md-5">
             <div className="row">
               {about_us.map((item, i) => (
                 <div key={i} className="col-12">
                   <div className="parallax-about">
-                    <h2 style={{ textAlign: "center" }} className="mb-3">
+                    <h2 style={{ textAlign: "justify" }} className="mb-3">
                       {item.text}
                     </h2>
                   </div>

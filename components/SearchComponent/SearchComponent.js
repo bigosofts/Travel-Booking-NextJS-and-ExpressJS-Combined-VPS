@@ -40,8 +40,10 @@ function SearchComponent(props) {
       }
     };
     const searchtext = searchtextref.current.value;
-    const activity = activityref.current.value;
-    const country = countryref.current.value;
+    const activity =
+      activityref.current.value == "Activity" ? "" : activityref.current.value;
+    const country =
+      countryref.current.value == "Country" ? "" : countryref.current.value;
     hardRefreshCustom(
       `/travels?search=${searchtext}&activity=${activity}&country=${country}`
     );
@@ -69,6 +71,7 @@ function SearchComponent(props) {
                   </div>
                   <div className="col-md-3">
                     <select ref={activityref} className="form-control category">
+                      <option>Activity</option>
                       {uniqueActivityArray(data).map((item, i) => (
                         <option key={i}>{item}</option>
                       ))}
@@ -76,6 +79,7 @@ function SearchComponent(props) {
                   </div>
                   <div className="col-md-3">
                     <select ref={countryref} className="form-control category">
+                      <option>Country</option>
                       {uniqueCountryArray(data).map((item, i) => (
                         <option key={i}>{item}</option>
                       ))}
