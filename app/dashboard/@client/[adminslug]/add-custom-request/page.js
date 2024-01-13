@@ -24,9 +24,11 @@ const AddCustomReq = () => {
   const activityref = useRef();
   const difficultyref = useRef();
   const priceref = useRef();
+  const maxPriceref = useRef();
   const durationref = useRef();
   const placeref = useRef();
   const travelTimeref = useRef();
+  const travelTimeref2ref = useRef();
   const previousExperienceref = useRef();
   const equipmentref = useRef();
   const groupSizeref = useRef();
@@ -61,9 +63,11 @@ const AddCustomReq = () => {
     const activity = activityref.current.value;
     const difficulty = difficultyref.current.value;
     const price = priceref.current.value;
+    const maxPrice = maxPriceref.current.value;
     const duration = durationref.current.value;
     const place = placeref.current.value;
     const travelTime = travelTimeref.current.value;
+    const travelTimeTwo = travelTimeref2ref.current.value;
     const previousExperience = previousExperienceref.current.value;
     const prevExperienceFinal = JSON.parse(previousExperience);
 
@@ -112,7 +116,9 @@ const AddCustomReq = () => {
       haveAccomodationFinal,
       haveFoodFinal,
       travelImageFinal,
-      reviews
+      reviews,
+      maxPrice,
+      travelTimeTwo
     );
 
     if (res) {
@@ -196,6 +202,16 @@ const AddCustomReq = () => {
           ></input>
         </div>
         <div className="input-type">
+          <label htmlFor="maxPriceref">Maximum Budget Price (Dollar):</label>
+          <input
+            ref={maxPriceref}
+            className="input-post-type"
+            type="number"
+            name="maxPriceref"
+            placeholder="Enter Maxiumum Travel Price in Dollar"
+          ></input>
+        </div>
+        <div className="input-type">
           <label htmlFor="userNameref">Travel Duration (days):</label>
           <input
             ref={durationref}
@@ -225,6 +241,18 @@ const AddCustomReq = () => {
             onBlur={handleBlur}
             name="travelTimeref"
             placeholder="Enter Travel Date"
+          ></input>
+        </div>
+        <div className="input-type">
+          <label htmlFor="travelTimeref2ref">
+            Desired Travel Time In Month:
+          </label>
+          <input
+            ref={travelTimeref2ref}
+            className="input-post-type"
+            type="text"
+            name="travelTimeref2ref"
+            placeholder="Enter Travel like 'april,may,...'"
           ></input>
         </div>
         <div className="input-type">
