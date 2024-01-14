@@ -6,7 +6,6 @@ import myToast from "@/components/toast/toast";
 import { updateData } from "@/apiservices/orderapiservices";
 import { useState, useEffect } from "react";
 import { getToken } from "@/helper/sessionHelper";
-import myToast from "@/components/toast/toast";
 
 function UpdateOrderForm(props) {
   const isAdmin = getToken("token_travel");
