@@ -692,7 +692,6 @@ function UpdatePackageForm(props) {
               id="radioDefault1"
               name="status"
               className="form-check-input mt-1 mr-2"
-              checked
             />
             <label htmlFor="radioDefault1">Active</label>
           </div>
@@ -719,7 +718,6 @@ function UpdatePackageForm(props) {
               id="radioDefault2"
               name="status"
               className="form-check-input mt-1 mr-2"
-              checked
             />
             <label
               htmlFor="radioDefault2"

@@ -40,6 +40,25 @@ const AddNewPackage = () => {
 
   const clickHandler = async (e) => {
     e.preventDefault();
+    let fileInput = document.getElementById("fileInput");
+    let fileUploadData;
+    if (fileInput.files[0]) {
+      const formData = new FormData();
+      formData.append("fileInput", fileInput.files[0]); // Upload the selected file
+
+      const response = await fetch("/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        console.log(response);
+        fileUploadData = "";
+      } else {
+        const data = await response.json();
+        fileUploadData = data;
+      }
+    }
     const currentDate = new Date();
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth() + 1;
@@ -72,8 +91,7 @@ const AddNewPackage = () => {
     const previousExperience = previousExperienceref.current.value;
     const prevExperienceFinal = JSON.parse(previousExperience);
 
-    const equipment = equipmentref.current.value;
-    const equipementFinal = JSON.parse(equipment);
+    const equipment = [`${equipmentref.current.value}`];
 
     const groupSize = groupSizeref.current.value;
     const travelDescription = travelDescriptionref.current.value;
@@ -87,8 +105,10 @@ const AddNewPackage = () => {
     const haveFood = haveFoodref.current.value;
     const haveFoodFinal = JSON.parse(haveFood);
 
-    const travelImage = travelImageref.current.value;
-    const travelImageFinal = JSON.parse(travelImage);
+    const travelImage = fileUploadData
+      ? [`${fileUploadData.fileUrl}`]
+      : [`${travelImageref.current.value}`];
+
     const reviews = [];
 
     const status = "inactive";
@@ -110,13 +130,13 @@ const AddNewPackage = () => {
       place,
       travelTime,
       prevExperienceFinal,
-      equipementFinal,
+      equipment,
       groupSize,
       travelDescription,
       haveGuidingFinal,
       haveAccomodationFinal,
       haveFoodFinal,
-      travelImageFinal,
+      travelImage,
       reviews,
       maxPrice,
       travelTimeTwo
@@ -251,7 +271,7 @@ const AddNewPackage = () => {
             className="input-post-type"
             type="text"
             name="travelTimeref2ref"
-            placeholder="Enter Travel Date"
+            placeholder="Enter Travel in month 'April, May,..' like this"
           ></input>
         </div>
         <div className="input-type">
@@ -267,14 +287,14 @@ const AddNewPackage = () => {
           </select>
         </div>
         <div className="input-type">
-          <label htmlFor="userNameref">Equipment Array:</label>
+          <label htmlFor="userNameref">What Equipment do you have:</label>
           <textarea
             ref={equipmentref}
             id="equipmentref"
             name="equipmentref"
             rows="1"
             className="input-post-type"
-            placeholder="Enter Travel Equipment Array"
+            placeholder="Enter What equipment do you have"
           ></textarea>
         </div>
 
@@ -325,7 +345,23 @@ const AddNewPackage = () => {
             <option value="false">False</option>
           </select>
         </div>
-        <div className="input-type">
+        <div
+          style={{ display: "flex", backgroundColor: "#fff" }}
+          className="input-type"
+        >
+          <label for="fileInput">
+            <img
+              style={{ cursor: "pointer" }}
+              src="/chat-img/images/attachment.png"
+              alt="Add"
+            />
+          </label>
+          <input
+            accept="image/png, image/jpeg"
+            style={{ display: "none" }}
+            id="fileInput"
+            type="file"
+          />
           <label htmlFor="userNameref">Travel image:</label>
           <textarea
             ref={travelImageref}
