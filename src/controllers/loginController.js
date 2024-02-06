@@ -19,7 +19,7 @@ exports.clientLogin = (req, res) => {
       res
         .cookie("token_travel", token, {
           httpOnly: true,
-          maxAge: 30 * 24 * 60 * 60 * 1000,
+          maxAge: 365 * 24 * 60 * 60 * 1000,
         })
         .status(200)
         .json({
@@ -50,7 +50,7 @@ exports.instructorLogin = (req, res) => {
       res
         .cookie("token_travel", token, {
           httpOnly: true,
-          maxAge: 30 * 24 * 60 * 60 * 1000,
+          maxAge: 365 * 24 * 60 * 60 * 1000,
         })
         .status(200)
         .json({
