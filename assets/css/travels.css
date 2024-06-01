@@ -144,8 +144,8 @@
 } */
 .sidebar-travelpage {
   background-color: #fff;
- 
- margin-bottom: 80px;
+
+  margin-bottom: 80px;
 }
 
 .sidebar-travelpage .search input {
@@ -172,9 +172,10 @@
 }
 
 .travelpage-container .category {
-  width: 100%;
+  width: 80%;
   height: auto;
   overflow: hidden;
+  margin: 0px auto;
 }
 .travelpage-container .category h2 {
   margin-bottom: 50px;
@@ -634,26 +635,23 @@ label.star:before {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #849D82;
+  background-color: #849d82;
   color: #fff;
   top: 160px;
   left: 30px;
   cursor: pointer;
 }
-.visibility-sidebar2{
+.visibility-sidebar2 {
   display: none;
 }
-@media only screen and (max-width: 600px){
-  .visibility-sidebar2{
+@media only screen and (max-width: 600px) {
+  .visibility-sidebar2 {
     display: block;
   }
-  .visibility-sidebar{
+  .visibility-sidebar {
     display: none;
   }
   .floating-back-button {
-    
     top: 100px;
-  
   }
 }
-

@@ -5,6 +5,7 @@ import { BiBrush } from "react-icons/bi";
 import myToast from "@/components/toast/toast";
 import { updateData } from "@/apiservices/postapiservices";
 import { useState, useEffect } from "react";
+import { BiUserPlus } from "react-icons/bi";
 
 function updatePostForm(props) {
   const [post, setPost] = useState({
@@ -123,6 +124,39 @@ function updatePostForm(props) {
     });
   };
 
+  const sendImageHandler = async (e) => {
+    e.preventDefault();
+
+    try {
+      let fileInput = document.getElementById("fileInput");
+
+      let fileUploadData;
+
+      if (fileInput.files[0]) {
+        const formData = new FormData();
+        formData.append("fileInput", fileInput.files[0]); // Upload the selected file
+
+        const response = await fetch(`/upload`, {
+          method: "POST",
+          body: formData,
+        });
+
+        if (!response.ok) {
+          fileUploadData = "";
+        } else {
+          const data = await response.json();
+          fileUploadData = data;
+
+          setPost({
+            postImageLink: fileUploadData.fileUrl,
+          });
+        }
+      }
+    } catch (error) {
+      console.error("Error uploading file:", error);
+    }
+  };
+
   return (
     <form className="form-grid-box">
       <div className="input-type">
@@ -161,6 +195,21 @@ function updatePostForm(props) {
           placeholder="Enter post image link"
           value={post.postImageLink}
         ></input>
+        <input
+          style={{ marginTop: "10px" }}
+          accept="image/png image/jpeg image/gif"
+          type="file"
+          id="fileInput"
+        ></input>
+        <button
+          style={{ padding: "0px 10px", marginTop: "10px" }}
+          onClick={sendImageHandler}
+        >
+          Upload Image{" "}
+          <span>
+            <BiUserPlus size={23} />
+          </span>
+        </button>
       </div>
       <div className="input-type">
         <label htmlFor="postidref">Post ID:</label>

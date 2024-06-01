@@ -7,10 +7,15 @@ import { createData } from "@/apiservices/travelpackageapiservices";
 import { getToken } from "@/helper/sessionHelper";
 import "../../../@admin/[adminslug]//dashsidebar.css";
 import Nav from "@/Navigation/Nav";
+import { BiUserPlus } from "react-icons/bi";
 
 const AddCustomReq = () => {
   const isAdmin = getToken("token_travel");
   const [inputType, setInputType] = useState("text");
+
+  const [fileData, setFileData] = useState([]);
+  const [imageArray, setImageArray] = useState();
+
   const handleFocus = () => {
     setInputType("date");
   };
@@ -40,25 +45,6 @@ const AddCustomReq = () => {
 
   const clickHandler = async (e) => {
     e.preventDefault();
-    let fileInput = document.getElementById("fileInput");
-    let fileUploadData;
-    if (fileInput.files[0]) {
-      const formData = new FormData();
-      formData.append("fileInput", fileInput.files[0]); // Upload the selected file
-
-      const response = await fetch("/upload", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!response.ok) {
-        console.log(response);
-        fileUploadData = "";
-      } else {
-        const data = await response.json();
-        fileUploadData = data;
-      }
-    }
 
     const currentDate = new Date();
     const year = currentDate.getFullYear();
@@ -105,11 +91,9 @@ const AddCustomReq = () => {
     const haveFood = haveFoodref.current.value;
     const haveFoodFinal = JSON.parse(haveFood);
 
-    const travelImage = fileUploadData
-      ? [`${fileUploadData.fileUrl}`]
-      : [`${travelImageref.current.value}`];
+    const travelImage = travelImageref.current.value;
+    const travelImageFinal = JSON.parse(travelImage);
 
-    
     const reviews = [];
 
     const status = "active";
@@ -137,7 +121,7 @@ const AddCustomReq = () => {
       haveGuidingFinal,
       haveAccomodationFinal,
       haveFoodFinal,
-      travelImage,
+      travelImageFinal,
       reviews,
       maxPrice,
       travelTimeTwo
@@ -149,6 +133,49 @@ const AddCustomReq = () => {
       myToast.warning("something went wrong");
     }
   };
+
+  useEffect(() => {
+    if (fileData.length > 0) {
+      setImageArray(JSON.stringify(fileData));
+    }
+  }, [fileData]);
+
+  const sendImageHandler = async (e) => {
+    e.preventDefault();
+
+    try {
+      let fileInput = document.getElementById("fileInput");
+
+      let fileUploadData;
+
+      if (fileInput.files[0]) {
+        const formData = new FormData();
+        formData.append("fileInput", fileInput.files[0]); // Upload the selected file
+
+        const response = await fetch(`/upload`, {
+          method: "POST",
+          body: formData,
+        });
+
+        if (!response.ok) {
+          fileUploadData = "";
+        } else {
+          const data = await response.json();
+          fileUploadData = data;
+
+          setFileData((prev) => [...prev, fileUploadData.fileUrl]);
+        }
+      }
+    } catch (error) {
+      console.error("Error uploading file:", error);
+    }
+  };
+
+  function onChangeHandler(e) {
+    e.preventDefault();
+
+    setImageArray(e.target.value);
+  }
 
   return (
     <>
@@ -315,7 +342,7 @@ const AddCustomReq = () => {
         </div>
 
         <div className="input-type">
-          <label htmlFor="haveGuidingref">Have Guiding:</label>
+          <label htmlFor="haveGuidingref">Need Guiding?</label>
           <select
             ref={haveGuidingref}
             className="input-post-type"
@@ -327,7 +354,7 @@ const AddCustomReq = () => {
           </select>
         </div>
         <div className="input-type">
-          <label htmlFor="haveAccomodationref">Have Accomodation:</label>
+          <label htmlFor="haveAccomodationref">Need Accomodation?</label>
           <select
             ref={haveAccomodationref}
             className="input-post-type"
@@ -339,7 +366,7 @@ const AddCustomReq = () => {
           </select>
         </div>
         <div className="input-type">
-          <label htmlFor="haveFoodref">Have Food:</label>
+          <label htmlFor="haveFoodref">Need Food?</label>
           <select
             ref={haveFoodref}
             className="input-post-type"
@@ -350,32 +377,33 @@ const AddCustomReq = () => {
             <option value="false">Not Needed</option>
           </select>
         </div>
-        <div
-          style={{ display: "flex", backgroundColor: "#fff" }}
-          className="input-type"
-        >
-          <label for="fileInput">
-            <img
-              style={{ cursor: "pointer" }}
-              src="/chat-img/images/attachment.png"
-              alt="Add"
-            />
-          </label>
-          <input
-            accept="image/png, image/jpeg"
-            style={{ display: "none" }}
-            id="fileInput"
-            type="file"
-          />
+        <div className="input-type">
           <label htmlFor="userNameref">Travel image:</label>
           <textarea
+            value={imageArray}
             ref={travelImageref}
+            onChange={onChangeHandler}
             id="travelImageref"
             name="travelImageref"
             rows="1"
             className="input-post-type"
-            placeholder="Enter travel Image Link"
+            placeholder="Enter multiple image like this: ['/link1', '/link2']"
           ></textarea>
+          <input
+            style={{ marginTop: "10px" }}
+            accept="image/png image/jpeg image/gif"
+            type="file"
+            id="fileInput"
+          ></input>
+          <button
+            style={{ padding: "0px 10px", marginTop: "10px" }}
+            onClick={sendImageHandler}
+          >
+            Upload Image{" "}
+            <span>
+              <BiUserPlus size={23} />
+            </span>
+          </button>
         </div>
 
         <div className="input-type">

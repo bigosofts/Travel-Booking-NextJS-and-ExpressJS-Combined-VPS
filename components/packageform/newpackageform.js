@@ -4,9 +4,12 @@ import { useRef, useState, useEffect } from "react";
 import { BiPlus } from "react-icons/bi";
 import myToast from "@/components/toast/toast";
 import { createData } from "@/apiservices/travelpackageapiservices";
+import { BiUserPlus } from "react-icons/bi";
 
 function NewPackageForm(props) {
   const [inputType, setInputType] = useState("text");
+  const [fileData, setFileData] = useState([]);
+  const [imageArray, setImageArray] = useState();
   const handleFocus = () => {
     setInputType("date");
   };
@@ -93,6 +96,7 @@ function NewPackageForm(props) {
 
     const travelImage = travelImageref.current.value;
     const travelImageFinal = JSON.parse(travelImage);
+
     const reviews = reviewsref.current.value;
     const reviewsFinal = JSON.parse(reviews);
 
@@ -142,6 +146,50 @@ function NewPackageForm(props) {
     }
   };
 
+  useEffect(() => {
+    setImageArray(JSON.stringify(fileData));
+  }, [fileData]);
+
+  const sendImageHandler = async (e) => {
+    e.preventDefault();
+
+    try {
+      let fileInput = document.getElementById("fileInput");
+
+      let fileUploadData;
+
+      if (fileInput.files[0]) {
+        const formData = new FormData();
+        formData.append("fileInput", fileInput.files[0]); // Upload the selected file
+
+        const response = await fetch(`/upload`, {
+          method: "POST",
+          body: formData,
+        });
+
+        if (!response.ok) {
+          fileUploadData = "";
+        } else {
+          const data = await response.json();
+          fileUploadData = data;
+          
+          setFileData((prev) => [...prev, fileUploadData.fileUrl]);
+
+          
+        }
+      }
+    } catch (error) {
+      console.error("Error uploading file:", error);
+    }
+  };
+
+  function onChangeHandler(e) {
+    e.preventDefault();
+
+    setImageArray(e.target.value);
+  }
+
+  
   return (
     <form className="form-grid-box">
       <div className="input-type">
@@ -391,13 +439,30 @@ function NewPackageForm(props) {
       <div className="input-type">
         <label htmlFor="userNameref">Travel image:</label>
         <textarea
+          value={imageArray}
           ref={travelImageref}
+          onChange={onChangeHandler}
           id="travelImageref"
           name="travelImageref"
           rows="1"
           className="input-post-type"
           placeholder="Enter travel Image Link"
         ></textarea>
+        <input
+          style={{ marginTop: "10px" }}
+          accept="image/png image/jpeg image/gif"
+          type="file"
+          id="fileInput"
+        ></input>
+        <button
+          style={{ padding: "0px 10px", marginTop: "10px" }}
+          onClick={sendImageHandler}
+        >
+          Upload Image{" "}
+          <span>
+            <BiUserPlus size={23} />
+          </span>
+        </button>
       </div>
 
       <div className="input-type">

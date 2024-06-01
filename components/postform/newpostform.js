@@ -1,11 +1,13 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useRef } from "react";
 import { BiPlus } from "react-icons/bi";
 import myToast from "@/components/toast/toast";
 import { createData } from "@/apiservices/postapiservices";
+import { BiUserPlus } from "react-icons/bi";
 
 function NewPostForm(props) {
+  const [fileData, setFileData] = useState();
   const posttitleref = useRef();
   const postuserref = useRef();
   const postimagelinkref = useRef();
@@ -48,6 +50,37 @@ function NewPostForm(props) {
     }
   };
 
+  const sendImageHandler = async (e) => {
+    e.preventDefault();
+
+    try {
+      let fileInput = document.getElementById("fileInput");
+
+      let fileUploadData;
+
+      if (fileInput.files[0]) {
+        const formData = new FormData();
+        formData.append("fileInput", fileInput.files[0]); // Upload the selected file
+
+        const response = await fetch(`/upload`, {
+          method: "POST",
+          body: formData,
+        });
+
+        if (!response.ok) {
+          fileUploadData = "";
+        } else {
+          const data = await response.json();
+          fileUploadData = data;
+
+          setFileData(fileUploadData.fileUrl);
+        }
+      }
+    } catch (error) {
+      console.error("Error uploading file:", error);
+    }
+  };
+
   return (
     <form className="form-grid-box">
       <div className="input-type">
@@ -74,12 +107,28 @@ function NewPostForm(props) {
       <div className="input-type">
         <label htmlFor="postimagelinkref">Post Image Link:</label>
         <input
+          value={fileData}
           ref={postimagelinkref}
           className="input-post-type"
           type="text"
           name="postimagelink"
           placeholder="Enter post image link"
         ></input>
+        <input
+          style={{ marginTop: "10px" }}
+          accept="image/png image/jpeg image/gif"
+          type="file"
+          id="fileInput"
+        ></input>
+        <button
+          style={{ padding: "0px 10px", marginTop: "10px" }}
+          onClick={sendImageHandler}
+        >
+          Upload Image{" "}
+          <span>
+            <BiUserPlus size={23} />
+          </span>
+        </button>
       </div>
       <div className="input-type">
         <label htmlFor="postidref">Post ID:</label>
@@ -88,7 +137,7 @@ function NewPostForm(props) {
           className="input-post-type"
           type="text"
           name="postid"
-          placeholder="Enter post ID"
+          placeholder="Enter post ID (Need to be Unique)"
         ></input>
       </div>
       <div className="input-type">

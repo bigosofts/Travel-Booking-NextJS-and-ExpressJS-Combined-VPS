@@ -5,8 +5,10 @@ import { BiBrush } from "react-icons/bi";
 import myToast from "@/components/toast/toast";
 import { updateData } from "@/apiservices/travelpackageapiservices";
 import { useState, useEffect } from "react";
+import { BiUserPlus } from "react-icons/bi";
 
 function UpdatePackageForm(props) {
+  const [fileData, setFileData] = useState([]);
   const [inputType, setInputType] = useState("text");
   const handleFocus = () => {
     setInputType("date");
@@ -40,7 +42,7 @@ function UpdatePackageForm(props) {
     haveGuiding: props.payload.haveGuiding,
     haveAccomodation: props.payload.haveAccomodation,
     haveFood: props.payload.haveAccomodation,
-    travelImage: props.payload.travelImage,
+    travelImage: JSON.stringify(props.payload.travelImage),
     reviews: props.payload.reviews,
     activeStatus: props.payload.activeStatus,
   });
@@ -70,7 +72,7 @@ function UpdatePackageForm(props) {
       haveGuiding: props.payload.haveGuiding,
       haveAccomodation: props.payload.haveAccomodation,
       haveFood: props.payload.haveAccomodation,
-      travelImage: props.payload.travelImage,
+      travelImage: JSON.stringify(props.payload.travelImage),
       reviews: props.payload.reviews,
       activeStatus: props.payload.activeStatus,
     });
@@ -225,6 +227,48 @@ function UpdatePackageForm(props) {
       myToast.warning("something went wrong");
     }
   };
+
+  useEffect(() => {
+    if (fileData.length > 0) {
+      setPackages({
+        travelImage: JSON.stringify(fileData),
+      });
+    }
+  }, [fileData]);
+
+  const sendImageHandler = async (e) => {
+    e.preventDefault();
+
+    try {
+      let fileInput = document.getElementById("fileInput");
+
+      let fileUploadData;
+
+      if (fileInput.files[0]) {
+        const formData = new FormData();
+        formData.append("fileInput", fileInput.files[0]); // Upload the selected file
+
+        const response = await fetch(`/upload`, {
+          method: "POST",
+          body: formData,
+        });
+
+        if (!response.ok) {
+          fileUploadData = "";
+        } else {
+          const data = await response.json();
+          fileUploadData = data;
+          debugger;
+          setFileData((prev) => [...prev, fileUploadData.fileUrl]);
+
+          debugger;
+        }
+      }
+    } catch (error) {
+      console.error("Error uploading file:", error);
+    }
+  };
+
   const onChangeHandler1 = (e) => {
     setPackages({
       packageId: e.target.value,
@@ -343,7 +387,7 @@ function UpdatePackageForm(props) {
   };
   const onChangeHandler22 = (e) => {
     setPackages({
-      TravelImageFinal: e.target.value,
+      travelImage: e.target.value,
     });
   };
   const onChangeHandler23 = (e) => {
@@ -645,13 +689,28 @@ function UpdatePackageForm(props) {
         <textarea
           ref={travelImageref}
           onChange={onChangeHandler22}
-          value={JSON.stringify(packages.travelImage)}
+          value={packages.travelImage}
           id="travelImageref"
           name="travelImageref"
           rows="1"
           className="input-post-type"
           placeholder="Enter travel Image Link"
         ></textarea>
+        <input
+          style={{ marginTop: "10px" }}
+          accept="image/png image/jpeg image/gif"
+          type="file"
+          id="fileInput"
+        ></input>
+        <button
+          style={{ padding: "0px 10px", marginTop: "10px" }}
+          onClick={sendImageHandler}
+        >
+          Upload Image{" "}
+          <span>
+            <BiUserPlus size={23} />
+          </span>
+        </button>
       </div>
       <div className="input-type">
         <label htmlFor="reviewsref">Reviews Array:</label>
