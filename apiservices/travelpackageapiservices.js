@@ -82,7 +82,6 @@ exports.createData = async (
   reviews,
   maxPrice,
   travelTimeTwo
-  
 ) => {
   const aboutdata = {
     packageId,

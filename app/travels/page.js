@@ -15,6 +15,7 @@ import HeaderFront from "@/components/HeaderFront/HeaderFront";
 import CoverElement from "@/components/CoverElement/CoverElement";
 import FrontFooter from "@/components/FrontFooter/FrontFooter";
 import SearchComponent from "@/components/SearchComponent/SearchComponent";
+import Loader from "@/components/loader/Loader";
 
 function page(props) {
   const searchParams = useSearchParams();
@@ -69,12 +70,28 @@ function page(props) {
 
     fetchData();
   }, []);
- 
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   if (filteredPackageData) {
     return (
       <div className="travelpage-container">
-        <HeaderFront />
+        <HeaderFront scrolledStatus={scrolled} />
         <CoverElement id={"Travel Packages"} />
         <div style={{ margin: "auto"}}>
           <SearchComponent />
@@ -85,7 +102,7 @@ function page(props) {
       </div>
     );
   } else {
-    return <div>Loading...</div>;
+    return <Loader/>
   }
 }
 

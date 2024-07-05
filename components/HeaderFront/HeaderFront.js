@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-function HeaderFront(props) {
+function HeaderFront({ scrolledStatus }) {
   const router = useRouter();
 
   const hardRefresh = () => {
@@ -10,7 +10,7 @@ function HeaderFront(props) {
   };
 
   return (
-    <header className="hide">
+    <header className={scrolledStatus ? `scrolled hide` : `hide`}>
       <nav class="header-front">
         <img
           style={{ cursor: "pointer" }}
@@ -19,7 +19,26 @@ function HeaderFront(props) {
           alt="Travel"
           className="logo"
         ></img>
-        <ul style={{paddingLeft:"0px"}}>
+        <ul style={{ paddingLeft: "0px" }}>
+          <li className="search">
+            <a href="#search-front">
+              <i className="fa fa-search"></i>
+            </a>
+          </li>
+          <li
+            className="disappear"
+            style={{ cursor: "pointer" }}
+            onClick={() => router.push("/travels")}
+          >
+            <a>Packages</a>
+          </li>
+          <li
+            className="disappear"
+            style={{ cursor: "pointer" }}
+            onClick={() => router.push("/posts")}
+          >
+            <a>Blogs</a>
+          </li>
           <li
             style={{ cursor: "pointer" }}
             onClick={() => router.push("/login")}
@@ -32,11 +51,7 @@ function HeaderFront(props) {
           >
             <a>Sign Up</a>
           </li>
-          <li className="search">
-            <a href="#search-front">
-              <i className="fa fa-search"></i>
-            </a>
-          </li>
+
           <li
             style={{ cursor: "pointer" }}
             onClick={() => router.push("/dashboard/user")}

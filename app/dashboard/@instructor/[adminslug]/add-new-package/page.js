@@ -8,12 +8,15 @@ import { getToken } from "@/helper/sessionHelper";
 import "../../../@admin/[adminslug]//dashsidebar.css";
 import Nav from "@/Navigation/Nav";
 import { BiUserPlus } from "react-icons/bi";
+import RichTextEditor from "@/components/RichTextEditor/RichTextEditor";
+import DOMPurify from "dompurify";
 
 const AddNewPackage = () => {
   const isAdmin = getToken("token_travel");
   const [inputType, setInputType] = useState("text");
   const [fileData, setFileData] = useState([]);
   const [imageArray, setImageArray] = useState();
+  const [data, setData] = useState("Enter Travel Description Here");
 
   const handleFocus = () => {
     setInputType("date");
@@ -36,7 +39,6 @@ const AddNewPackage = () => {
   const previousExperienceref = useRef();
   const equipmentref = useRef();
   const groupSizeref = useRef();
-  const travelDescriptionref = useRef();
   const haveGuidingref = useRef();
   const haveAccomodationref = useRef();
   const haveFoodref = useRef();
@@ -44,8 +46,7 @@ const AddNewPackage = () => {
 
   const clickHandler = async (e) => {
     e.preventDefault();
-   
-   
+
     const currentDate = new Date();
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth() + 1;
@@ -81,7 +82,7 @@ const AddNewPackage = () => {
     const equipment = [`${equipmentref.current.value}`];
 
     const groupSize = groupSizeref.current.value;
-    const travelDescription = travelDescriptionref.current.value;
+    const travelDescription = DOMPurify.sanitize(data);
 
     const haveGuiding = haveGuidingref.current.value;
     const haveGuidingFinal = JSON.parse(haveGuiding);
@@ -193,8 +194,29 @@ const AddNewPackage = () => {
       >
         Add New package
       </div>
+
+      <div
+        style={{
+          paddingLeft: "10%",
+          paddingRight: "10%",
+        }}
+      >
+        <label htmlFor="travelDescription">Travel Description:</label>
+        <div
+          style={{ marginBottom: "20px" }}
+          name="travelDescription"
+          className="input-type"
+        >
+          <RichTextEditor value={data} setValue={setData} />
+        </div>
+      </div>
+
       <form
-        style={{ paddingLeft: "10%", paddingRight: "10%", paddingBottom:"100px" }}
+        style={{
+          paddingLeft: "10%",
+          paddingRight: "10%",
+          paddingBottom: "100px",
+        }}
         className="form-grid-box"
       >
         <div className="input-type">
@@ -294,7 +316,10 @@ const AddNewPackage = () => {
           ></input>
         </div>
         <div className="input-type">
-          <label htmlFor="travelTimeref2ref"> Travel open in which month?</label>
+          <label htmlFor="travelTimeref2ref">
+            {" "}
+            Travel open in which month?
+          </label>
           <input
             ref={travelTimeref2ref}
             className="input-post-type"
@@ -304,7 +329,9 @@ const AddNewPackage = () => {
           ></input>
         </div>
         <div className="input-type">
-          <label htmlFor="previousExperienceref">Need Previous Experience?</label>
+          <label htmlFor="previousExperienceref">
+            Need Previous Experience?
+          </label>
           <select
             ref={previousExperienceref}
             className="input-post-type"
@@ -401,18 +428,6 @@ const AddNewPackage = () => {
               <BiUserPlus size={23} />
             </span>
           </button>
-        </div>
-
-        <div className="input-type">
-          <label htmlFor="userNameref">Description:</label>
-          <textarea
-            ref={travelDescriptionref}
-            id="travelDescription"
-            name="travelDescription"
-            rows="1"
-            className="input-post-type"
-            placeholder="Enter Travel Description"
-          ></textarea>
         </div>
 
         <button

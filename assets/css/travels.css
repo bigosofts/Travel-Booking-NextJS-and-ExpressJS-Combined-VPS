@@ -66,7 +66,7 @@
   font-size: 14px;
 }
 .secbg p span {
-  color: black;
+  color: #fff;
 }
 
 .container-travel-page .social {
@@ -112,7 +112,6 @@
 }
 .travelpage-container .news_item p {
   color: #818181;
-  padding: 20px 40px;
 }
 .travelpage-container .news_item a {
   display: inline-block;

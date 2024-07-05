@@ -59,7 +59,9 @@ nextApp.prepare().then(() => {
   app.use(hpp());
 
   //Body parser implementation
-  app.use(bodyParser.json());
+
+  app.use(bodyParser.json({ limit: "10mb" }));
+  app.use(bodyParser.urlencoded({ extended: true, limit: "10mb" }));
 
   // Mongo DB Database Connection
   let URI = `mongodb+srv://${process.env.DATABASE_USERNAME}:${process.env.DATABASE_PASSWORD}@cluster0.fbrulyl.mongodb.net/${process.env.DATABASE_NAME}?retryWrites=true&w=majority`;

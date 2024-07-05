@@ -13,9 +13,28 @@ function Date({ filler }) {
   );
 
   function clickHandler(value) {
-    let modified = filteredPackageData.filter(
-      (item) => item.travelTime == value
-    );
+    let modified = filteredPackageData.filter((item) => {
+      const monthAbbreviations = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+
+      const month = item.travelTime.match(/-(\d{2})-/)[1];
+
+      const monthAbbreviation = monthAbbreviations[parseInt(month, 10) - 1];
+
+      return monthAbbreviation == value;
+    });
 
     dispatch(setInitialData(modified));
   }

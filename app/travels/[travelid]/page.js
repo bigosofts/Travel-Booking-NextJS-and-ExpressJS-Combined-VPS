@@ -22,6 +22,7 @@ import { getToken } from "@/helper/sessionHelper";
 // } from "@/apiservices/conversationapiservices";
 import { useRouter } from "next/navigation";
 import SingleSlider from "@/components/SingleSlider/SingleSlider";
+import Loader from "@/components/loader/Loader";
 
 function SingleTravelPage({ params }) {
   function goBack() {
@@ -239,6 +240,33 @@ function SingleTravelPage({ params }) {
     return uniqueNumber;
   }
 
+  function richtextoutput(text) {
+    return (
+      <div
+        className="richtext"
+        style={{ width: "90%", textAlign: "justify", margin: "0 auto" }}
+        dangerouslySetInnerHTML={{ __html: text }}
+      />
+    );
+  }
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   if (singleData && presetPackage && adminData) {
     return (
       <>
@@ -246,7 +274,7 @@ function SingleTravelPage({ params }) {
           style={{ marginBottom: "-100px" }}
           className="travelpage-container"
         >
-          <HeaderFront />
+          <HeaderFront scrolledStatus={scrolled} />
           <SingleSlider filler={singleData} />
           <section className="Title-single-travel">
             <div className="container-single-travel">
@@ -331,7 +359,9 @@ function SingleTravelPage({ params }) {
                   <div className="news_item">
                     <ImageCarousel filler={singleData} />
                     <h2>{singleData.packageTitle}</h2>
-                    <p>{singleData.travelDescription}</p>
+
+                    {richtextoutput(singleData.travelDescription)}
+
                     <Accordion filler={singleData} />
 
                     <div className="sidebar-travelpage">
@@ -589,7 +619,7 @@ function SingleTravelPage({ params }) {
       </>
     );
   } else {
-    return <div>Loading ... </div>;
+    return <Loader />;
   }
 }
 

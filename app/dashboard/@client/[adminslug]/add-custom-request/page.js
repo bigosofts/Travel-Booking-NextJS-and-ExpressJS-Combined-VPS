@@ -8,10 +8,14 @@ import { getToken } from "@/helper/sessionHelper";
 import "../../../@admin/[adminslug]//dashsidebar.css";
 import Nav from "@/Navigation/Nav";
 import { BiUserPlus } from "react-icons/bi";
+import RichTextEditor from "@/components/RichTextEditor/RichTextEditor";
+
+import DOMPurify from "dompurify";
 
 const AddCustomReq = () => {
   const isAdmin = getToken("token_travel");
   const [inputType, setInputType] = useState("text");
+  const [data, setData] = useState("Enter Travel Description Here");
 
   const [fileData, setFileData] = useState([]);
   const [imageArray, setImageArray] = useState();
@@ -37,7 +41,6 @@ const AddCustomReq = () => {
   const previousExperienceref = useRef();
   const equipmentref = useRef();
   const groupSizeref = useRef();
-  const travelDescriptionref = useRef();
   const haveGuidingref = useRef();
   const haveAccomodationref = useRef();
   const haveFoodref = useRef();
@@ -80,7 +83,7 @@ const AddCustomReq = () => {
     const equipment = [`${equipmentref.current.value}`];
 
     const groupSize = groupSizeref.current.value;
-    const travelDescription = travelDescriptionref.current.value;
+    const travelDescription = DOMPurify.sanitize(data);
 
     const haveGuiding = haveGuidingref.current.value;
     const haveGuidingFinal = JSON.parse(haveGuiding);
@@ -192,8 +195,29 @@ const AddCustomReq = () => {
       >
         Add Custom Request
       </div>
+
+      <div
+        style={{
+          paddingLeft: "10%",
+          paddingRight: "10%",
+        }}
+      >
+        <label htmlFor="travelDescription">Travel Description:</label>
+        <div
+          style={{ marginBottom: "20px" }}
+          name="travelDescription"
+          className="input-type"
+        >
+          <RichTextEditor value={data} setValue={setData} />
+        </div>
+      </div>
+
       <form
-        style={{ paddingLeft: "10%", paddingRight: "10%" }}
+        style={{
+          paddingLeft: "10%",
+          paddingRight: "10%",
+          paddingBottom: "100px",
+        }}
         className="form-grid-box"
       >
         <div className="input-type">
@@ -404,18 +428,6 @@ const AddCustomReq = () => {
               <BiUserPlus size={23} />
             </span>
           </button>
-        </div>
-
-        <div className="input-type">
-          <label htmlFor="userNameref">Description:</label>
-          <textarea
-            ref={travelDescriptionref}
-            id="travelDescription"
-            name="travelDescription"
-            rows="1"
-            className="input-post-type"
-            placeholder="Enter Travel Description"
-          ></textarea>
         </div>
 
         <button

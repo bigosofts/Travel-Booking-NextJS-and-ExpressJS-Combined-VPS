@@ -4,7 +4,7 @@ import HeroSection from "@/components/HeroSection/HeroSection";
 import FrontBody from "@/components/FrontBody/FrontBody";
 import FrontFooter from "@/components/FrontFooter/FrontFooter";
 import SearchComponent from "@/components/SearchComponent/SearchComponent";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { isAdmin } from "@/apiservices/checklogin";
 import { useDispatch, useSelector } from "react-redux";
 import { setInitialData } from "./redux/features/isAdmin/isAdminSlice";
@@ -27,9 +27,27 @@ function Page(props) {
     getData();
   }, []);
 
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  
   return (
     <>
-      <HeaderFront />
+      <HeaderFront scrolledStatus={scrolled} />
       <HeroSection />
       <FrontBody>
         <SearchComponent />
