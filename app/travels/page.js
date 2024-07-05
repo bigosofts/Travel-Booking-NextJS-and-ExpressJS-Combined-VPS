@@ -35,7 +35,7 @@ function Page(props) {
   useEffect(() => {
     async function settingData() {
       try {
-        if (activity || country) {
+        if (activity || country || searchtext) {
           debugger;
           const dataArray = await selectPackages({
             activeStatus: "active",
