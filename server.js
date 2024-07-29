@@ -114,7 +114,7 @@ nextApp.prepare().then(() => {
     return nextApp.getRequestHandler()(req, res);
   });
 
-  expressServer.listen(process.env.PORT || 3000, () => {
+  expressServer.listen(process.env.PORT || 5000, () => {
     console.log(">Server Ready on http://localhost:" + process.env.PORT);
   });
 });

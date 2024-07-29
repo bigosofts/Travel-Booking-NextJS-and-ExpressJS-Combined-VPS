@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 function HeaderFront({ scrolledStatus }) {
   const router = useRouter();
-
+//hard refresh
   const hardRefresh = () => {
     if (typeof window !== "undefined") {
       window.location.href = "/";
@@ -11,7 +11,7 @@ function HeaderFront({ scrolledStatus }) {
 
   return (
     <header className={scrolledStatus ? `scrolled hide` : `hide`}>
-      <nav class="header-front">
+      <nav className="header-front">
         <img
           style={{ cursor: "pointer" }}
           onClick={hardRefresh}
