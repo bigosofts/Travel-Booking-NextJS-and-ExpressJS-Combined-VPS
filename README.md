@@ -1,65 +1,139 @@
-# travel-booking-with-chat
-Travel booking app with multiuser chating using MERN stack, NextJS, Socket.io and Redux
 
-This is completely production ready application. Tested on windows vps live server using IIS. It's ready to host and make the site live...
+# Travel-Booking-NextJS-and-ExpressJS-Combined-VPS
 
-
-
-Recommended NodeJS Version v16.20.1
-
-Recommended NPM Version v8.19.4
-
-Recommended Yarn Version v1.22.19
-
-Open the project directory in VSCode or other code editor.
-
-In terminal run the following command:
-
--"yarn install"
-
--"yarn run dev" for development mode
-
-or,
-
--"yarn run build" for building production app and then "yarn start" for starting the servers.
+A brief description of what this project does and who it's for
 
 
-//Database creation for Demo content load
+![Logo](https://atiqlab.bigosofts.com/wp-content/uploads/2024/08/rsz_logo.png)
 
--create a MongoDB database using the name "activeascents"
 
--create some collections using the following names:
-  1. clients
-  2. conversations
-  3. instructors
-  4. messages
-  5. orders
-  6. packages
-  7. posts
-  8. widgets
-     
--Now, using mongoDB compass import the JSON object to
-each of the collection.
+## Deployment
 
--You will find demo json object for collections in **"/database"** folder
+To deploy this project download it, make a zip file and upload it to wordpress theme
 
-//Demo Admin Dashboard
+```bash
+  git clone https://github.com/bigosofts/Travel-Booking-NextJS-and-ExpressJS-Combined-VPS.git
+```
 
-User: "abdullahlimon"
+```bash
+  cd Travel-Booking-NextJS-and-ExpressJS-Combined-VPS
+```
 
-Password: "12345678"  or "1234567"
+```bash
+  yarn install
+```
 
-//Demo Client Dashboard
+```bash
+  yarn run build
+```
 
-User: "rabeya23"
+```bash
+  yarn start
+```
 
-Password: "12345678" or "1234567"
 
-//Demo Instructor Dashboard
+## Environment Variables
 
-User: "limon"
+To run this project, you will need to add the following environment variables to your .env file
 
-Password: "12345678" or "1234567"
+`DATABASE_USERNAME`
 
-Now you are ready to go...
+`DATABASE_PASSWORD`
 
+`DATABASE_NAME`
+
+`SECRETKEY_JWT_WEBTOKEN`
+
+`PORT`
+
+
+## Authors
+
+- [@Abdullah Al Amin](https://www.linkedin.com/in/abdullah-al-amin-93408b192)
+
+
+## Demo
+
+Browse this link to see theme in action:
+
+https://travel.bigosofts.com/
+## Features
+
+- Frontend and Backend Combined, Running one single port
+- Browse Travel Package
+- Blog Features
+- Single blog page
+- Single Package page
+- Review System with star
+- lient, Instructor and Admin Dashboard
+- Client an create custom order
+- Instructor can bid client via messaging
+- Instructor can create travel package
+- Order Management
+- Navigation Menu
+- Select Travel Package
+- Custom Query Message
+- Start chat with Travel guide
+- Negotiate with Price
+- Client Signup
+- Login as Guide or Client
+- Instructor can create custom price for package
+- Pending Image and Offer message to client
+- Client order placement in Chat
+- Ticket generation
+
+
+## Screenshots
+Hero Section
+![App Screenshot](https://atiqlab.bigosofts.com/wp-content/uploads/2024/08/Screenshot-from-2024-08-25-12-41-56.png)
+
+Admin Dashboard
+![App Screenshot](https://atiqlab.bigosofts.com/wp-content/uploads/2024/08/Screenshot-from-2024-08-25-12-46-25.png)
+
+Rich Text Editor
+![App Screenshot](https://atiqlab.bigosofts.com/wp-content/uploads/2024/08/Screenshot-from-2024-08-25-12-46-52.png)
+
+Instructor and Client Dashboard
+![App Screenshot](https://atiqlab.bigosofts.com/wp-content/uploads/2024/08/Screenshot-from-2024-08-25-12-44-37.png)
+
+Feature Card
+![App Screenshot](https://atiqlab.bigosofts.com/wp-content/uploads/2024/08/Screenshot-from-2024-08-25-12-42-39.png)
+
+Blog Section
+![App Screenshot](https://atiqlab.bigosofts.com/wp-content/uploads/2024/08/Screenshot-from-2024-08-25-12-42-56.png)
+
+Post Single Page
+![App Screenshot](https://atiqlab.bigosofts.com/wp-content/uploads/2024/08/Screenshot-from-2024-08-25-12-43-56.png)
+
+All Travel Packages
+![App Screenshot](https://atiqlab.bigosofts.com/wp-content/uploads/2024/08/new2.png)
+
+Footer Section
+![App Screenshot](https://atiqlab.bigosofts.com/wp-content/uploads/2024/08/Screenshot-from-2024-08-25-12-43-10.png)
+
+Single Package Page
+![App Screenshot](https://atiqlab.bigosofts.com/wp-content/uploads/2024/08/Screenshot-from-2024-08-25-12-55-11.png)
+
+## Support
+
+For support, email bigosofts@gmail.com or contact me on Facebook or LinkedIn. You will find social media link in my github profile
+
+
+## FAQ
+
+#### How to use this template in my pc?
+
+Download the source code. Make some command that I put it in earlier sections. Create .env file and launch the project
+
+#### Do you provide demo database for this project?
+
+yes, if someone need it, Just knock at me. I will provide you the demo database for running the complete app
+
+
+## Tech Stack
+
+**Client:** HTML, CSS, ReactJS, NextJS
+
+**Server:** NodeJS, ExpressJS, Socket.IO
+
+**Deployment:** Windows VPS, IIS Server
