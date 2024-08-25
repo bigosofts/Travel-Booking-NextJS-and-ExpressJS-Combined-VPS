@@ -9,7 +9,7 @@ A brief description of what this project does and who it's for
 
 ## Deployment
 
-To deploy this project download it, make a zip file and upload it to wordpress theme
+To deploy this run the following command:
 
 ```bash
   git clone https://github.com/bigosofts/Travel-Booking-NextJS-and-ExpressJS-Combined-VPS.git
@@ -49,7 +49,7 @@ To run this project, you will need to add the following environment variables to
 
 ## Authors
 
-- [@Abdullah Al Amin](https://www.linkedin.com/in/abdullah-al-amin-93408b192)
+- [@Abdullah Al Amin](https://github.com/bigosofts)
 
 
 ## Demo
@@ -57,6 +57,7 @@ To run this project, you will need to add the following environment variables to
 Browse this link to see website is in action:
 
 https://travel.bigosofts.com/
+
 ## Features
 
 - Frontend and Backend Combined, Running one single port
