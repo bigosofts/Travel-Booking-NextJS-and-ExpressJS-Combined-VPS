@@ -20,7 +20,6 @@ const Accordion = ({ filler }) => {
   const haveAccomodationref = useRef();
   const haveFoodref = useRef();
 
-
   var isoTime = filler.travelTime;
 
   var date = new Date(isoTime);
@@ -38,14 +37,10 @@ const Accordion = ({ filler }) => {
       <ul>
         <li>
           <input type="radio" id="tab1" name="acor" defaultChecked />
-          <label htmlFor="tab1">Travel Details</label>
+          <label htmlFor="tab1">Travel Pricing</label>
           <div className="content">
             <p>Average Price: ${filler.price}</p>
             <p>Maximum Price: ${filler.maxPrice}</p>
-            <p>Travel Date: {formattedDate}</p>
-            <p>Travel Time in Year: {filler.travelTimeTwo}</p>
-            <p>Activity: {filler.activity}</p>
-            <p>Difficulty: {filler.difficulty}</p>
           </div>
         </li>
         <li>
@@ -58,6 +53,10 @@ const Accordion = ({ filler }) => {
             <p>Preset Before: {JSON.stringify(filler.preset) ? "Yes" : "No"}</p>
             <p>Duration: {filler.duration} days</p>
             <p>Place: {filler.place}</p>
+            <p>Travel Date: {formattedDate}</p>
+            <p>Travel Time in Year: {filler.travelTimeTwo}</p>
+            <p>Activity: {filler.activity}</p>
+            <p>Difficulty: {filler.difficulty}</p>
           </div>
         </li>
         <li>

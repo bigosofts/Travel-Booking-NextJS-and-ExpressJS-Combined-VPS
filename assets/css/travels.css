@@ -328,13 +328,17 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  max-width: 1200px;
+  max-width: 1600px;
   margin: auto;
   padding: 2%;
 }
 
 .left-single-travel-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 20%;
+  margin-right: 20px;
 }
 .right-single-travel-item {
   width: 80%;
@@ -628,7 +632,6 @@ label.star:before {
 }
 
 .floating-back-button {
-  position: absolute;
   width: 100px;
   height: 40px;
   display: flex;
@@ -636,8 +639,7 @@ label.star:before {
   align-items: center;
   background-color: #849d82;
   color: #fff;
-  top: 160px;
-  left: 30px;
+
   cursor: pointer;
 }
 .visibility-sidebar2 {
@@ -649,8 +651,5 @@ label.star:before {
   }
   .visibility-sidebar {
     display: none;
-  }
-  .floating-back-button {
-    top: 100px;
   }
 }

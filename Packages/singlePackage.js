@@ -53,12 +53,11 @@ function SinglePackage({ items }) {
             style={{
               display: "flex",
               justifyContent: "space-between",
-              padding: "20px 15% 0px 15%",
+              padding: "20px 5% 0px 5%",
             }}
           >
             <div>
               <table id="postGridTable" style={{ width: "100%" }}>
-                
                 <tr>
                   <td>Difficulty:</td>
                   <td className="td-right">{items.difficulty}</td>

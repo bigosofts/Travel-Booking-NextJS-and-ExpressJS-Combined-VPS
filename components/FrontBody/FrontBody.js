@@ -70,6 +70,16 @@ function FrontBody({ children }) {
     return formattedDate;
   }
 
+  function richtextoutput(text) {
+    return (
+      <div
+        className="richtext"
+        style={{ width: "100%", textAlign: "justify", margin: "0 auto" }}
+        dangerouslySetInnerHTML={{ __html: text }}
+      />
+    );
+  }
+
   if (filteredPackageData && frontWidget && filteredPostData) {
     let front_client_instructor = frontWidget.find(
       (item) => item.widgetName == "front_client_instructor"
@@ -87,7 +97,8 @@ function FrontBody({ children }) {
           <div className="p-0 p-md-5 text-center">
             <h1 className="mb-3 got_an">
               Got an adventure in mind? Look no further. We partner guides and
-              clients for whatever experience takes your fancy.
+              clients for whatever experience takes your fancy. Login or sign up
+              to get started!”
             </h1>
           </div>
           <div className="slide" data-anchor="slide1">
@@ -200,7 +211,7 @@ function FrontBody({ children }) {
                   <div className="card-body">
                     <h5 className="card-title">{item.postTitle.en}</h5>
                     <p className="card-text">
-                      {item.postDescription.en.substring(0, 80)}
+                      {richtextoutput(item.postDescription.en.substring(0, 80))}
                     </p>
                     <Link href={`/posts/${item.postId}`}>Read More ... </Link>
                   </div>

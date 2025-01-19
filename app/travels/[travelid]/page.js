@@ -16,6 +16,7 @@ import ReviewGrid from "@/components/ReviewGrid/ReviewGrid";
 import mytoast from "@/components/toast/toast";
 import Link from "next/link";
 import { getToken } from "@/helper/sessionHelper";
+import BackButton from "@/components/BackButton/BackButton";
 // import {
 //   createData as createConversations,
 //   selectAllData as selectConversations,
@@ -25,9 +26,6 @@ import SingleSlider from "@/components/SingleSlider/SingleSlider";
 import Loader from "@/components/loader/Loader";
 
 function SingleTravelPage({ params }) {
-  function goBack() {
-    history.back();
-  }
   const router = useRouter();
   // async function SendMsgRequest(Data) {
   //   if (adminData.status == "noToken") {
@@ -279,6 +277,7 @@ function SingleTravelPage({ params }) {
           <section className="Title-single-travel">
             <div className="container-single-travel">
               <div className="left-single-travel-item">
+                <BackButton />
                 <div className="wrapper-single-title">
                   <h2>{singleData.place}</h2>
                   <p>
@@ -609,12 +608,7 @@ function SingleTravelPage({ params }) {
             </div>
           </section>
         </div>
-        <div onClick={goBack} className="floating-back-button">
-          <i className="fa fa-arrow-left" aria-hidden="true">
-            {" "}
-            Back{" "}
-          </i>
-        </div>
+
         <FrontFooter />
       </>
     );
