@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "set NODE_ENV=production && node server.js"
+    "start": "SET NODE_ENV=production && node server.js"
   },
   "dependencies": {
     "@reduxjs/toolkit": "1.9.5",

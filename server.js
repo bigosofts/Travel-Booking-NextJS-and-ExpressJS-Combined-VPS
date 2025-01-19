@@ -23,7 +23,7 @@ const mongoose = require("mongoose");
 
 //Custom Express Server Setup In NextJS
 
-const dev = process.env.NODE_ENV !== "production";
+const dev = process.env.NODE_ENV == "production";
 const nextApp = next({ dev });
 
 nextApp.prepare().then(() => {
