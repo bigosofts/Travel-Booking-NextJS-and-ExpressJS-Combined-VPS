@@ -164,6 +164,7 @@ const ChatBox = () => {
       }
     }
   };
+
   const deleteMessageHandler = async (pkid) => {
     const condition1 = {
       sender: isAdmin.data.userName,
@@ -322,11 +323,12 @@ const ChatBox = () => {
         if (filteredMessage.length > 0) {
           return filteredMessage[0].text;
         } else {
-          return "No messages yet";
+          return "No Msg yet";
         }
       }
     }
   };
+
   const SingleMessage = (id) => {
     if (conversation && message) {
       let filteredConversation = conversation.filter((item) => item._id == id);
@@ -340,6 +342,7 @@ const ChatBox = () => {
       }
     }
   };
+
   const fullscreenButton = () => {
     const item = fulScrrenItem.current;
 
@@ -432,6 +435,7 @@ const ChatBox = () => {
         );
       }
     }
+
     function chatName(userid) {
       if (selectedConversation[0]) {
         if (selectedConversation[0].creatorID !== userid) {
@@ -475,7 +479,7 @@ const ChatBox = () => {
                     : ""
                 }`}
               >
-                <img src="/chat-img/images/user1.png" alt="Sumit" />
+                <img src="/chat-img/images/user1.png" alt="Limon" />
                 <div class="title-text">
                   {item.participantID !== isAdmin.data.userName
                     ? item.participantID

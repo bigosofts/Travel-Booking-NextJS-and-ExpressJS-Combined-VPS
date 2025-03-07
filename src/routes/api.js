@@ -11,6 +11,7 @@ const loginController = require("../controllers/loginController");
 const widgetController = require("../controllers/widgetController");
 const messageController = require("../controllers/messageController");
 const conversationController = require("../controllers/conversationController");
+const { paymentProcessing } = require("../controllers/paymentProcessing");
 
 //Middleware Import
 const passEncrypted = require("../middlewares/passwordEncryption");
@@ -20,6 +21,8 @@ const authverify = require("../middlewares/authverifyMiddleware");
 router.get("/hello", (req, res) => {
   res.json({ message: "Hello from Express.js!" });
 });
+
+router.get("/payment", paymentProcessing);
 
 //authentication
 router.get("/isAdmin", authverify, (req, res) => {
