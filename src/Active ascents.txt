@@ -6,9 +6,9 @@ user: activeascent
 pass: $Active@Ascents!2023
 
 remote Desktop connection
-IP: 72.167.134.24
+IP: 68.178.205.6
 Username: activeascent
-pass: deUPf0IEwB%K
+pass: $Active@Ascents!2023
 
 Cloudflare.com
 email: activeascents20@gmail.com
