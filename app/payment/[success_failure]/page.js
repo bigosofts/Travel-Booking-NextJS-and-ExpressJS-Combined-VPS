@@ -15,7 +15,6 @@ import {
   selectData as selectOrder,
 } from "@/apiservices/orderapiservices";
 import mytoast from "@/components/toast/toast";
-import io from "socket.io-client";
 
 export default function Success_Failure({ params }) {
   function push(url) {
@@ -79,7 +78,7 @@ export default function Success_Failure({ params }) {
               mytoast.success("Your order has been modified");
             }
 
-            console.log(resOrder.data[0], resMessage.data[0]);
+            removeToken("orderMsg");
           }
         } else {
           const [resOrder, resMessage] = await Promise.all([
@@ -126,12 +125,11 @@ export default function Success_Failure({ params }) {
               mytoast.success("Your order has been modified");
             }
 
-            console.log(resOrder.data[0], resMessage.data[0]);
+            removeToken("orderMsg");
           }
         }
       }
       checkTransactionsFunc(transactionId);
-      removeToken("orderMsg");
     }
   }, []);
 
