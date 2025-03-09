@@ -36,7 +36,7 @@ nextApp.prepare().then(() => {
     console.log(`Spawning ${numCPUs} workers...`);
 
     // Fork workers for each CPU core
-    for (let i = 0; i < numCPUs; i++) {
+    for (let i = 0; i < 5; i++) {
       cluster.fork(); // Forking a worker for each CPU core
     }
 
