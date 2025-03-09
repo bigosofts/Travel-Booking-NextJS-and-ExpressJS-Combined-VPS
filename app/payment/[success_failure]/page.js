@@ -26,7 +26,6 @@ export default function Success_Failure({ params }) {
 
   useEffect(() => {
     if (orderId && !transactionId) {
-      removeToken("orderMsg");
     } else if (orderId && transactionId) {
       const { orderCode, msgId } = getToken("orderMsg");
 
@@ -77,8 +76,6 @@ export default function Success_Failure({ params }) {
             if (resOrderUpdate.status == "Success") {
               mytoast.success("Your order has been modified");
             }
-
-            removeToken("orderMsg");
           }
         } else {
           const [resOrder, resMessage] = await Promise.all([
@@ -124,8 +121,6 @@ export default function Success_Failure({ params }) {
             if (resOrderUpdate.status == "Success") {
               mytoast.success("Your order has been modified");
             }
-
-            removeToken("orderMsg");
           }
         }
       }
