@@ -33,10 +33,10 @@ nextApp.prepare().then(() => {
     const numCPUs = os.cpus().length; // Get the number of CPU cores
 
     console.log(`Master process is running on PID ${process.pid}`);
-    console.log(`Spawning 4 workers...`);
+    console.log(`Spawning ${numCPUs} workers...`);
 
     // Fork workers for each CPU core
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < numCPUs; i++) {
       cluster.fork(); // Forking a worker for each CPU core
     }
 
