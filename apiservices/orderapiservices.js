@@ -99,7 +99,7 @@ exports.updateData = async (
     clientID,
   };
 
-  debugger;
+ 
 
   const res = await fetch(`/apis/v1/update-order`, {
     method: "PUT",
