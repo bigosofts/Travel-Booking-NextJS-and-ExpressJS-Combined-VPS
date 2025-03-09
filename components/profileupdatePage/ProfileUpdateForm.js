@@ -94,7 +94,6 @@ function ProfileUpdateForm(props) {
     const profileImage = profileImageref2.current.value;
 
     const idValue = clients._id;
-   
 
     const res = await updateInstructor(
       idValue,
@@ -189,9 +188,9 @@ function ProfileUpdateForm(props) {
               value={clients.clientPhone}
               ref={clientPhoneref}
               className="input-post-type"
-              type="number"
+              type="text"
               name="clientPhoneref"
-              placeholder="Enter Client Phone Number"
+              placeholder="Enter phone like this (ex. +441234566)"
             ></input>
           </div>
           <div className="input-type">
@@ -256,7 +255,7 @@ function ProfileUpdateForm(props) {
               className="input-post-type"
               type="text"
               name="instructorPhoneref"
-              placeholder="Enter Instructor Phone number"
+              placeholder="Enter Phone like this (ex. +44013459596)"
               value={clients.instructorPhone}
             ></input>
           </div>

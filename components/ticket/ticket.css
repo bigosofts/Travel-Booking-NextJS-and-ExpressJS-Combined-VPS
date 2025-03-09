@@ -34,7 +34,7 @@
 
 .ticket__header {
   font-size: 1.5rem;
-  border-top: 0.25rem solid var(--red);
+  border-top: 0.25rem solid #008F79;
   border-bottom: none;
   box-shadow: none;
 }

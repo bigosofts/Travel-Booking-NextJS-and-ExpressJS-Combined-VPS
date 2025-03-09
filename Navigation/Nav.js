@@ -1,7 +1,7 @@
 "use client";
 
 import { AiOutlineLogout } from "react-icons/ai";
-import { BsFillGearFill } from "react-icons/bs";
+import { IoMdChatbubbles } from "react-icons/io";
 import { logout } from "@/apiservices/checklogin";
 import mytoast from "@/components/toast/toast";
 import { useRouter } from "next/navigation";
@@ -78,7 +78,7 @@ function Nav({ filler, isAdmin }) {
               hardRefresh(`/dashboard/${data.data.userName}/setting`)
             }
           >
-            <BsFillGearFill className="nav-icons" />
+            <IoMdChatbubbles className="nav-icons" />
           </a>
           <a
             title="Log Out!"

@@ -37,8 +37,10 @@ const Ticket = () => {
           });
           setPackages(res2.data);
           setProfiles(res4.data);
-        }else{
-          alert("You are not allowed to download Ticket. Ask Instructor for download Tickets")
+        } else {
+          alert(
+            "You are not allowed to download Ticket. Ask Instructor for download Tickets"
+          );
         }
       }
     }
@@ -93,19 +95,33 @@ const Ticket = () => {
             padding: "50px 20px",
             width: "80rem",
             border: "5px dotted #000",
+            backgroundColor:"#fff"
           }}
         >
           <article class="ticket">
             <div class="ticket__wrapper">
               <div class="ticket__header">
                 Active Ascents {` -${orders[0].orderID}`}
+                <br />
+                Client Name: {orders[0].clientID}
+                <br />
+                Amount Paid: ${orders[0].orderPrice}
               </div>
             </div>
             <div class="ticket__divider">
               <div class="ticket__notch"></div>
               <div class="ticket__notch ticket__notch--right"></div>
             </div>
-            <div class="ticket__body">
+            <div
+              style={{
+                background: "url('/hero-img/ticket.png')",
+                backgroundPosition: "bottom",
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+               
+              }}
+              class="ticket__body"
+            >
               <div className="flex-ticket">
                 <section class="ticket__section">
                   <h3>Your Tickets</h3>
@@ -139,11 +155,11 @@ const Ticket = () => {
 
               <section class="ticket__section">
                 <h3>Payment Method</h3>
-                <p>On Hand before the tour</p>
+                <p>Online Payment</p>
               </section>
             </div>
             <footer class="ticket__footer">
-              <span>Total Payable Amount</span>
+              <span>Total Paid Amount</span>
               <span>${orders[0].orderPrice}</span>
             </footer>
           </article>

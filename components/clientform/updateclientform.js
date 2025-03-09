@@ -133,7 +133,7 @@ function UpdateClientForm(props) {
           value={clients.clientPhone}
           ref={clientPhoneref}
           className="input-post-type"
-          type="number"
+          type="text"
           name="clientPhoneref"
           placeholder="Enter Client Phone Number"
         ></input>

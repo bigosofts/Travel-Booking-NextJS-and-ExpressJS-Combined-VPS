@@ -82,11 +82,13 @@ function NewInstructorForm(props) {
       </div>
 
       <div className="input-type">
-        <label htmlFor="instructorPhoneref">Enter Instructor Phone Number:</label>
+        <label htmlFor="instructorPhoneref">
+          Enter Instructor Phone Number:
+        </label>
         <input
           ref={instructorPhoneref}
           className="input-post-type"
-          type="number"
+          type="text"
           id="clientPhoneref"
           name="instructorPhoneref"
           placeholder="Enter Client Phone Number"

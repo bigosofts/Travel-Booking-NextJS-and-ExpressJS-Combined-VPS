@@ -2,8 +2,6 @@
 import { useEffect } from "react";
 
 function HeroSection(props) {
-
- 
   function hardRefresh() {
     const parallax_el = document.querySelectorAll(".parallax");
 
@@ -96,12 +94,9 @@ function HeroSection(props) {
         "3"
       );
   }
-  
 
   useEffect(() => {
-
     import("../../assets/js/gsap.js");
-  
   }, []);
 
   return (

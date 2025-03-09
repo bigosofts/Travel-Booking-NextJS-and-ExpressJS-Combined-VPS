@@ -1,0 +1,102 @@
+.payment-container {
+  width: 100vw;
+  padding-bottom: 100px;
+}
+
+.payment-box {
+  text-align: center;
+  background-color: #e2e8f0;
+  width: 80%;
+  max-width: 50%;
+  margin: 50px auto;
+  padding: 50px;
+  border-radius: 24px;
+}
+
+.tick-container {
+  border-radius: 50%;
+  background-color: #f1f5f9;
+  width: 200px;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.tick-icon {
+  font-size: 200px;
+  color: #365314;
+}
+.close-icon {
+  font-size: 200px;
+  color: #a13a1b;
+}
+
+.content {
+  margin-top: 10px;
+  padding: 20px;
+}
+
+.class-price {
+  background-color: #475569;
+  color: white;
+  padding: 20px;
+  border-radius: 24px;
+  margin: 40px auto;
+  width: 100%;
+  max-width: 90%;
+  font-size: 1.875rem;
+  text-align: center;
+}
+
+.payment-title {
+  color: #365314;
+  font-size: 1.25rem;
+}
+
+.payment-message {
+  color: #365314;
+  margin-top: 40px;
+  font-size: 1.25rem;
+}
+
+.dashboard-button {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #1a2e05;
+  color: white;
+  border-radius: 24px;
+  cursor: pointer;
+  border: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .payment-box {
+    width: 90%;
+    max-width: 90%;
+  }
+
+  .tick-container {
+    width: 200px;
+  }
+
+  .tick-icon {
+    font-size: 200px;
+  }
+  .close-icon {
+    font-size: 200px;
+  }
+
+  .class-price {
+    font-size: 1.5rem;
+    width: 80%;
+  }
+
+  .payment-title,
+  .payment-message {
+    font-size: 1rem;
+  }
+
+  .dashboard-button {
+    font-size: 1rem;
+  }
+}

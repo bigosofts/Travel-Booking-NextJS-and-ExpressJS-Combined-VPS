@@ -79,7 +79,7 @@ function NewClientForm(props) {
         <input
           ref={clientPhoneref}
           className="input-post-type"
-          type="number"
+          type="text"
           id="clientPhoneref"
           name="clientPhoneref"
           placeholder="Enter Client Phone Number"

@@ -12,6 +12,7 @@ const widgetController = require("../controllers/widgetController");
 const messageController = require("../controllers/messageController");
 const conversationController = require("../controllers/conversationController");
 const { paymentProcessing } = require("../controllers/paymentProcessing");
+const { checkTransactions } = require("../controllers/paymentProcessing");
 
 //Middleware Import
 const passEncrypted = require("../middlewares/passwordEncryption");
@@ -22,7 +23,8 @@ router.get("/hello", (req, res) => {
   res.json({ message: "Hello from Express.js!" });
 });
 
-router.get("/payment", paymentProcessing);
+router.post("/payment", paymentProcessing);
+router.post("/transaction", checkTransactions);
 
 //authentication
 router.get("/isAdmin", authverify, (req, res) => {
