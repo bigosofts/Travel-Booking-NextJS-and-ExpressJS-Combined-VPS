@@ -1,8 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  experimental: {
-    tracing: false,
-  },
-};
+const nextConfig = {};
 
 module.exports = nextConfig;
