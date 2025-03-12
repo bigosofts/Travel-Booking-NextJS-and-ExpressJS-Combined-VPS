@@ -9,7 +9,7 @@ const cookieParser = require("cookie-parser");
 const multer = require("multer");
 const path = require("path");
 const http = require("http");
-const { Server } = require("socket.io");
+
 const cluster = require("cluster");
 const os = require("os");
 
@@ -46,27 +46,6 @@ nextApp.prepare().then(() => {
   } else {
     const app = express();
     const expressServer = http.createServer(app);
-    const io = new Server(expressServer);
-    // Store active socket connections
-    const activeSockets = new Set();
-
-    io.on("connection", (socket) => {
-      console.log("New user connected");
-
-      // Add the socket to the activeSockets set
-      activeSockets.add(socket);
-
-      socket.on("msg", (data) => {
-        io.sockets.emit("serverMSG", data);
-      });
-
-      socket.on("disconnect", () => {
-        console.log("User disconnected");
-
-        // Remove the socket from the activeSockets set
-        activeSockets.delete(socket);
-      });
-    });
 
     //Middleware Implementation
     app.use(cookieParser());
@@ -85,9 +64,6 @@ nextApp.prepare().then(() => {
 
     // let URI = `mongodb://127.0.0.1:27017/${process.env.DATABASE_USERNAME}`;
 
-    let OPTION = {
-      autoIndex: true,
-    };
     const OPTIONS = {
       autoIndex: true,
       serverSelectionTimeoutMS: 5000, // Timeout after 5s if no server is selected
