@@ -269,7 +269,8 @@ const ChatBox = () => {
 
   useEffect(() => {
     if (!socket) {
-      const newSocket = io("https://socket.activeascents.com"); // Create the socket if it doesn't exist
+      const newSocket = io("https://socket.activeascents.com");
+      // Create the socket if it doesn't exist
       setSocket(newSocket);
     }
 
