@@ -8,7 +8,7 @@ const expressServer = http.createServer(app); // Create HTTP server using expres
 // Enable CORS for Socket.io
 const io = new Server(expressServer, {
   cors: {
-    origin: ["http://localhost:5000", "https://activeascents.com"], // Allow connections from your frontend (update this if frontend is on a different port)
+    origin: "*", // Allow connections from your frontend (update this if frontend is on a different port)
     methods: ["GET", "POST"],
   },
 });
