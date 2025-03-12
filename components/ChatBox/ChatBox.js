@@ -269,7 +269,11 @@ const ChatBox = () => {
 
   useEffect(() => {
     if (!socket) {
-      const newSocket = io("https://socket.activeascents.com");
+      const newSocket = io("wss://socket.activeascents.com", {
+        secure: true,
+        transports: ["websocket", "polling"],
+      });
+
       console.log("socket:", newSocket);
       // Create the socket if it doesn't exist
       setSocket(newSocket);
