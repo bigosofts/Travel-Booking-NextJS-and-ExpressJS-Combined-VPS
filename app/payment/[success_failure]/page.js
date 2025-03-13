@@ -56,9 +56,6 @@ export default function Success_Failure({ params }) {
             };
 
             const resMessageUpdate = await updateMessage(aboutData);
-            if (resMessageUpdate.status == "Success") {
-              mytoast.success("Offer message has been modified");
-            }
 
             const resOrderUpdate = await updateOrder(
               resOrder.data[0]._id,
@@ -73,8 +70,13 @@ export default function Success_Failure({ params }) {
               resOrder.data[0].clientID
             );
 
-            if (resOrderUpdate.status == "Success") {
+            if (
+              resOrderUpdate.status == "Success" &&
+              resMessageUpdate.status == "Success"
+            ) {
+              mytoast.success("Offer message has been modified");
               mytoast.success("Your order has been modified");
+              removeToken("orderMsg");
             }
           }
         } else {
@@ -101,9 +103,6 @@ export default function Success_Failure({ params }) {
             };
 
             const resMessageUpdate = await updateMessage(aboutData);
-            if (resMessageUpdate.status == "Success") {
-              mytoast.success("Offer message has been modified");
-            }
 
             const resOrderUpdate = await updateOrder(
               resOrder.data[0]._id,
@@ -118,8 +117,13 @@ export default function Success_Failure({ params }) {
               resOrder.data[0].clientID
             );
 
-            if (resOrderUpdate.status == "Success") {
+            if (
+              resOrderUpdate.status == "Success" &&
+              resMessageUpdate.status == "Success"
+            ) {
+              mytoast.success("Offer message has been modified");
               mytoast.success("Your order has been modified");
+              removeToken("orderMsg");
             }
           }
         }

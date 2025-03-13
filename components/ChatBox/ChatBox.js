@@ -274,7 +274,6 @@ const ChatBox = () => {
         transports: ["websocket", "polling"],
       });
 
-      console.log("socket:", newSocket);
       // Create the socket if it doesn't exist
       setSocket(newSocket);
     }
